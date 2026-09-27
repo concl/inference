@@ -13,5 +13,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 \
   --max-num-seqs 32 \
   --host 127.0.0.1 \
   --port 8000 \
-  --reasoning-parser qwen3
+  --reasoning-parser qwen3 \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_xml
 ```
