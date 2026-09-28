@@ -8,8 +8,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 \
   --served-model-name Qwen3.8-27B \
   --tensor-parallel-size 4 \
   --dtype bfloat16 \
-  --gpu-memory-utilization 0.90 \
-  --max-model-len 32768 \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 131072 \
   --max-num-seqs 32 \
   --host 127.0.0.1 \
   --port 8000 \
