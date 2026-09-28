@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [project.scripts]
-check = "scripts.vibe_check:main"
+inference = "scripts.cli:main"
 
 [build-system]
 requires = ["hatchling"]

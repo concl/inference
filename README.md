@@ -1,19 +1,27 @@
 # inference
 
-## Command
+## Serving
+
+`scripts/serve.py` is the definition of how the model is served, including the
+option list.
+
 ```bash
-MODEL=Qwen/Qwen3.8-27B
-CUDA_VISIBLE_DEVICES=0,1,2,3 \
-.venv/bin/vllm serve "$MODEL" \
-  --served-model-name Qwen3.8-27B \
-  --tensor-parallel-size 4 \
-  --dtype bfloat16 \
-  --gpu-memory-utilization 0.95 \
-  --max-model-len 131072 \
-  --max-num-seqs 32 \
-  --host 127.0.0.1 \
-  --port 8000 \
-  --reasoning-parser qwen3 \
-  --enable-auto-tool-choice \
-  --tool-call-parser qwen3_xml
+inference serve --help          # option list
+inference serve                 # defaults
+inference serve --port 8080     # any option as a flag
+PORT=8080 inference serve       # or as an environment variable
+
+# long-lived, detached
+screen -S vllm_server -dm inference serve
+```
+
+Flags take precedence over environment variables. Run it under `screen` or
+`systemd` so it outlives your SSH session. `python -m scripts.serve` also works.
+
+## Client
+
+```bash
+inference check                          # one prompt
+inference check --interactive            # chat
+inference check --model Qwen3.8-27B --prompt "hi"
 ```
