@@ -15,8 +15,7 @@ PORT=8080 inference serve       # or as an environment variable
 screen -S vllm_server -dm inference serve
 ```
 
-Flags take precedence over environment variables. Run it under `screen` or
-`systemd` so it outlives your SSH session. `python -m scripts.serve` also works.
+Flags take precedence over environment variables. `python -m scripts.serve` also works.
 
 ## Client
 
