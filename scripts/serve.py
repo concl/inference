@@ -129,9 +129,13 @@ def vllm_args(args):
 
 def run(argv=None):
     """Launch vLLM, replacing this process. Returns early only to dry-run."""
-    args = build_parser().parse_args(argv)
+    # Anything this parser does not define is forwarded to `vllm serve`
+    # untouched, so vLLM-only flags (--kv-cache-dtype, --speculative-config,
+    # --mamba-cache-mode, ...) work without being restated here. `inference
+    # serve` depends on this: it hands its unrecognised arguments straight in.
+    args, passthrough = build_parser().parse_known_args(argv)
     binary = vllm_binary()
-    args_list = vllm_args(args)
+    args_list = vllm_args(args) + passthrough
 
     if args.dry_run:
         env = f"CUDA_VISIBLE_DEVICES={shlex.quote(args.gpus)} " if args.gpus else ""
