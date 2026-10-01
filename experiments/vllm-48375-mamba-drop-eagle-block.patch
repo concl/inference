@@ -1,0 +1,47 @@
+MambaManager.find_longest_cache_hit accepts drop_eagle_block and never reads it,
+so an MTP/EAGLE prefix-cache hit can resume from a recurrent-state snapshot taken
+over draft tokens that verification later rejected. Result is wrong output with no
+error (vllm#48375 / vllm#43559). The corrupted state is hash-reachable, so every
+later request sharing that prefix restores from it.
+
+Upstream: https://github.com/vllm-project/vllm/pull/48375 (still open, needs rebase)
+
+Why lowering max_length rather than max_num_blocks -= 1:
+the PR lowers the coarse search ceiling, but with --prefix-match-unit 16 the
+fine-grained branch above it runs instead and returns early. Reducing max_length
+bounds both: max_num_partial_units = min(max_length // hash_block_size, ...) and
+max_num_blocks = max_length // block_size. Arithmetically identical for the coarse
+case ((x - b) // b == x // b - 1). Same approach as the 4x sm_80 production
+deployment reported in the PR thread.
+
+Apply (from the venv's site-packages, so paths line up):
+
+    cd .venv/lib/python3.12/site-packages
+    patch -p1 --dry-run < ../../../../experiments/vllm-48375-mamba-drop-eagle-block.patch
+    patch -p1 < ../../../../experiments/vllm-48375-mamba-drop-eagle-block.patch
+
+Verify it took:
+
+    grep -n "drop_eagle_block" vllm/v1/core/single_type_kv_cache_manager.py
+
+There should now be a hit in the MambaManager body (around line 1423), not only in
+the signature at line 1400.
+
+PERSISTENCE WARNING: this edits the installed package. `uv sync`, a reinstall, or a
+vLLM upgrade will silently drop it and re-introduce the silent-corruption bug. If
+you turn on --enable-prefix-caching, re-run the grep above after any dependency
+change.
+
+--- a/vllm/v1/core/single_type_kv_cache_manager.py
++++ b/vllm/v1/core/single_type_kv_cache_manager.py
+@@ -1422,4 +1422,10 @@
+         block_size = kv_cache_spec.block_size
++        if drop_eagle_block:
++            # An EAGLE/MTP cache hit must not reuse the final matched block: its
++            # recurrent-state snapshot may have been taken over draft positions
++            # that verification later rejected. Lowering max_length bounds both
++            # the fine-grained and coarse searches below (vllm#48375, #43559).
++            max_length = max(0, max_length - block_size)
+         if alignment_tokens < block_size and block_size % alignment_tokens == 0:
+             # list or lazy BlobBlockHashes view
+             assert isinstance(block_hashes, Sequence)

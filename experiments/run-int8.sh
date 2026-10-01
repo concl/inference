@@ -65,7 +65,11 @@ args=(
 
   # local workarounds + safety
   --disable-custom-all-reduce
-  --no-enable-prefix-caching
+  # Safe only while the vllm#48375 patch is applied to the installed vllm --
+  # see experiments/vllm-48375-mamba-drop-eagle-block.patch. Without it, an
+  # MTP prefix-cache hit can resume from a rejected-draft recurrent state and
+  # serve wrong output silently. Re-apply the patch after `uv sync`/upgrade.
+  --enable-prefix-caching
   --enable-chunked-prefill
   --prefix-match-unit 16
   --enable-prompt-tokens-details
