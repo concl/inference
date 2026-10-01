@@ -1,4 +1,4 @@
-Source of truth: `experiments/run-int8.sh`
+Source of truth: `scripts/serve.py` (`inference serve`)
 Boot log: `/tmp/vllm-int8.log`
 
 ## Config
