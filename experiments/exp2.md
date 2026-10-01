@@ -18,7 +18,7 @@ Boot log: `/tmp/vllm-int8.log`
 | speculative-config | `{"method":"mtp","num_speculative_tokens":3}` |
 | reasoning-parser | qwen3 |
 | tool-call-parser | qwen3_coder |
-| prefix caching | off |
+| prefix caching | on (requires the vllm#48375 patch) |
 
 ## Bench
 
