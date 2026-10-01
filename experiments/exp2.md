@@ -20,10 +20,11 @@ Boot log: `/tmp/vllm-int8.log`
 | tool-call-parser | qwen3_coder |
 | prefix caching | off |
 
-## Result
+## Bench
 
-vibe check: accepted tokens per second: 40-50
+| Metric | Value |
+|---|---|
+| Accepted tokens/s (vibe check) | 40-50 |
+| `exp1.md` BF16 baseline (vibe check) | 15-18 |
 
-Baseline (`exp1.md`): 15-18 tok/s, so roughly 2.5-3x.
-
-One issue: slow latency due to bad token caching.
+Issue: high latency, prefix caching not effective.
