@@ -25,7 +25,7 @@ vllm serve Qwen/Qwen3.8-27B \
 | max-model-len | 262144 |
 | max-num-seqs | 32 |
 | prefix caching | on (vLLM default, no `--no-enable-prefix-caching`) |
-| patch | `experiments/vllm-48375-mamba-drop-eagle-block.patch`, applied to `.venv/.../site-packages` |
+| patch | now the fork branch `acmai/mamba-drop-eagle-block`; was originally applied to `.venv/.../site-packages` |
 
 ## Bench
 

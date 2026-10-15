@@ -1,5 +1,37 @@
 # inference
 
+A workspace for experimenting with vLLM serving, and for turning anything that
+pans out into an upstream pull request.
+
+## Layout
+
+| Path | What lives there |
+|---|---|
+| `scripts/` | `serve.py` (the single definition of how the model is served), the `inference` CLI, and the client helper |
+| `experiments/` | Experiment write-ups (`exp*.md`) and their raw results (`results/`) |
+| `notes/` | Reference notes |
+| `notes/WORKING_ON_VLLM.md` | How to work on vLLM internals and submit a PR |
+
+## Working on vLLM
+
+vLLM is a **uv dependency**, not a copy vendored into this repo. Which one you get
+is one line in `pyproject.toml` — currently commented, so `uv sync` gives the PyPI
+release:
+
+```toml
+[tool.uv.sources]
+vllm = { git = "https://github.com/concl/vllm.git", branch = "acmai/<change>" }
+```
+
+Work for a PR is made in a checkout of the fork, on a branch, and submitted as that
+branch — there is no patch file to keep in sync. See `notes/WORKING_ON_VLLM.md`.
+
+The rule: **if it ships in the PR, it lives in the fork.** vLLM's CI runs `pytest`
+inside the vLLM repo, so a test or microbenchmark written in this repo cannot be
+submitted. Changes go in `vllm/`, their correctness tests in `tests/kernels/`, and
+shipped microbenchmarks in `benchmarks/kernels/` — all inside the checkout. That is
+why this repo has no `tests/`: there is nothing here a vLLM PR could include.
+
 ## Serving
 
 `scripts/serve.py` is the definition of how the model is served, including the
@@ -31,8 +63,22 @@ inference check --model Qwen3.8-27B --prompt "hi"
 talks to the running server over HTTP, which means these commands also work from
 a laptop through the SSH tunnel.
 
-Both write JSON to `experiments/results/` (`--label` names the run). To compare
-configurations, run the same command before and after a change and diff the JSON.
+We use vLLM's own harness rather than a home-grown one, so the numbers are the ones
+a reviewer will re-run. Results land in `experiments/results/`.
+
+Two things to hold constant. **Change one variable per run** against a named
+baseline, and **give each server config its own `--served-model-name`** — vLLM's
+bench JSON cannot otherwise tell two servers apart, which is what made
+`experiments/exp3.md` ambiguous.
+
+`vllm bench` does not record spec-decode acceptance or prefix-cache hit rate. Grab
+them from the server while it is still up:
+
+```bash
+curl -s localhost:8000/metrics \
+  | grep -E 'spec_decode|prefix_cache|gpu_cache_usage' \
+  > experiments/results/<label>-metrics.txt
+```
 
 ### ShareGPT — realistic chat traffic
 

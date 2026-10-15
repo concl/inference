@@ -39,7 +39,7 @@ def cmd_serve(args):
 def build_parser():
     parser = argparse.ArgumentParser(
         prog="inference",
-        description="Talk to the club's OpenAI-compatible model endpoint.",
+        description="Talk to ACM AI's OpenAI-compatible model endpoint.",
         epilog=(
             "Connection settings come from the environment: "
             f"OPENAI_BASE_URL (default {vibe_check.DEFAULT_BASE_URL}) "
