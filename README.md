@@ -7,7 +7,8 @@ pans out into an upstream pull request.
 
 | Path | What lives there |
 |---|---|
-| `scripts/` | `serve.py` (the single definition of how the model is served), the `inference` CLI, and the client helper |
+| `configs/` | Serving configs, in vLLM's `vllm serve --config` YAML format |
+| `scripts/` | `serve.py` (a thin launcher around `vllm serve --config`), the `inference` CLI, and the client helper |
 | `experiments/` | Experiment write-ups (`exp*.md`) and their raw results (`results/`) |
 | `notes/` | Reference notes |
 | `notes/WORKING_ON_VLLM.md` | How to work on vLLM internals and submit a PR |
@@ -34,20 +35,28 @@ why this repo has no `tests/`: there is nothing here a vLLM PR could include.
 
 ## Serving
 
-`scripts/serve.py` is the definition of how the model is served, including the
-option list.
+`configs/serve.yaml` is the definition of how the model is served, written in
+vLLM's own `vllm serve --config` format: keys are flag names without the leading
+`--`, and nested maps are passed through as JSON.
+
+`scripts/serve.py` is only a launcher. It picks the `vllm` next to the
+interpreter, sets `CUDA_VISIBLE_DEVICES`, forwards everything it does not
+recognise, and execs `vllm serve --config <file>`.
 
 ```bash
-inference serve --help          # option list
-inference serve                 # defaults
-inference serve --port 8080     # any option as a flag
-PORT=8080 inference serve       # or as an environment variable
+inference serve --help              # vLLM's option list, not ours
+inference serve                     # configs/serve.yaml
+inference serve --port 8080         # CLI overrides the config file
+inference serve --config configs/other.yaml
+inference serve --dry-run           # print the command instead of running it
 
 # long-lived, detached
 screen -S vllm_server -dm inference serve
 ```
 
-Flags take precedence over environment variables. `python -m scripts.serve` also works.
+Command-line arguments beat the config file, which beats vLLM's defaults.
+`python -m scripts.serve` also works. GPUs come from `--gpus` or
+`CUDA_VISIBLE_DEVICES` (default `0,1,2,3`).
 
 ## Client
 

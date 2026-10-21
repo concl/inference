@@ -1,4 +1,4 @@
-Source of truth: `scripts/serve.py` (`inference serve`)
+Source of truth: `configs/serve.yaml` (`inference serve`)
 Boot log: `/tmp/vllm-int8.log`
 
 ## Config

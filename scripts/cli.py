@@ -30,8 +30,8 @@ def cmd_check(args):
 def cmd_serve(args):
     """Launch the vLLM server, replacing this process.
 
-    `scripts/serve.py` owns the option list, so unrecognised arguments (and
-    --help, hence add_help=False below) are handed straight to it.
+    `scripts/serve.py` is a thin launcher around `vllm serve --config`; it
+    forwards unrecognised arguments (and --help, hence add_help=False below).
     """
     return serve.run(args.extra)
 
@@ -75,8 +75,9 @@ def build_parser():
         add_help=False,
         help="Launch the vLLM server (runs scripts/serve.py).",
         description=(
-            "Launch the vLLM server. Every option is defined in "
-            "scripts/serve.py -- run `inference serve --help` to see them."
+            "Launch the vLLM server from configs/serve.yaml. Any unrecognised "
+            "argument is forwarded to `vllm serve` and overrides the config -- "
+            "run `inference serve --help` to see vLLM's own options."
         ),
     )
     serve_cmd.set_defaults(func=cmd_serve)
