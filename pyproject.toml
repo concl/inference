@@ -10,16 +10,9 @@ dependencies = [
     "vllm>=0.29.0",
 ]
 
-# Which vLLM you install is this one line. Left commented, `uv sync` gives the
-# PyPI release. Uncomment to build a fork branch from source:
-#
-#   [tool.uv.sources]
-#   vllm = { git = "https://github.com/concl/vllm.git", branch = "acmai/<change>" }
-#
-# The branch must be pushed first — uv fetches the remote — and a git source is
-# not editable, so re-run `uv sync --reinstall-package vllm` after each push. A
-# fork branch reports its own version, which may sit below the `vllm>=0.29.0`
-# floor in [project.dependencies]; relax that floor if resolution fails.
+
+[tool.uv.sources]
+vllm = { git = "https://github.com/concl/vllm.git", branch = "acmai/mamba-drop-eagle-block" }
 
 [project.scripts]
 inference = "scripts.cli:main"
