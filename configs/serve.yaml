@@ -1,12 +1,4 @@
-# The definition of how Qwen3.8-27B is served.
-#
-# This is vLLM's own `vllm serve --config` format: keys are flag names without
-# the leading `--`, nested maps are passed through as JSON, and command-line
-# arguments override anything here.
-#
-# Most of these are wiring, not tuning: the INT8 checkpoint needs its MTP head,
-# GDN linear-attention layers and fp8 KV cache configured explicitly, and
-# omitting any of them degrades silently rather than failing.
+
 
 model: lued/Qwen3.8-27B-INT8-W8A16-MTP
 served-model-name: Qwen3.8-27B
