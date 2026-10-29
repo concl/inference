@@ -1,0 +1,88 @@
+{
+  "sequential": {
+    "implementation": "sequential",
+    "tokens": 2048,
+    "qk_heads": 8,
+    "value_heads": 24,
+    "head_dim": 128,
+    "seed": 1337,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "triton": "3.7.1",
+    "baseline_ms": 3.460091104874244,
+    "output_state_max_abs_error": [
+      0.00048828125,
+      0.0040694475173950195
+    ],
+    "instrumentation": "post-optimization TTGIR",
+    "sampled_cta": [
+      0,
+      0,
+      0
+    ],
+    "sampled_warp": 0,
+    "instrumented_validation_atol": 0.001,
+    "instrumented_output_state_max_abs_error": [
+      0.0,
+      0.0
+    ],
+    "trace": "experiments/gdn_comparison/artifacts/proton_sequential/intra.chrome_trace",
+    "events": 16387,
+    "kernel_names": [
+      "_gdn_sequential_kernel"
+    ],
+    "trace_sha256": "f7cdbf22e541e59e7400852c8ce00b71f16a46a477a0a6a34ee6cb6b30d7f9ed"
+  },
+  "chunked": {
+    "implementation": "chunked",
+    "tokens": 2048,
+    "qk_heads": 8,
+    "value_heads": 24,
+    "head_dim": 128,
+    "seed": 1337,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "triton": "3.7.1",
+    "baseline_ms": 0.4627647996976458,
+    "output_state_max_abs_error": [
+      0.00048828125,
+      0.0040694475173950195
+    ],
+    "instrumentation": "post-optimization TTGIR",
+    "sampled_cta": [
+      0,
+      0,
+      0
+    ],
+    "sampled_warp": 0,
+    "instrumented_validation_atol": 0.001,
+    "instrumented_output_state_max_abs_error": [
+      0.0,
+      0.0
+    ],
+    "trace": "experiments/gdn_comparison/artifacts/proton_chunked/intra.chrome_trace",
+    "events": 468,
+    "kernel_names": [
+      "chunk_fwd_kernel_o",
+      "chunk_gated_delta_rule_fwd_kernel_h_blockdim64",
+      "chunk_local_cumsum_scalar_kernel",
+      "chunk_scaled_dot_kkt_fwd_kernel",
+      "merge_16x16_to_64x64_inverse_kernel",
+      "recompute_w_u_fwd_kernel"
+    ],
+    "trace_sha256": "b86b0b7ee09fef1c7ff8196f5bb7f14d3b777a8e50d3a682d06c9f6aa951488c"
+  },
+  "chunked_speedup": 7.476997185470775,
+  "timing_limitations": "Exploratory single-GPU timings. Another user started a server on GPU 4 during this experiment, so the GPU was not reserved or guaranteed idle.",
+  "original_commit": "58d8a013b2dd33adb99f75a1c7d12ce1babf8640",
+  "original_source_sha256": "c105ead259e86aedc248c53e7c4cef07034d0ff12da608d80265d1dd0990803f",
+  "sequential_source_sha256": "fa40dd32279ba044ec1b51f80d075f59276084182afb2d52a0369b12958e9205",
+  "torch_chunked": {
+    "trace": "experiments/gdn_comparison/artifacts/torch_chunked/rank0.1793299040504163594.pt.trace.json.gz",
+    "sha256": "371366f1857013b8afc1a6bd07b50a8ffe9626505d2ce6e5f23663f180b4573e",
+    "sequential_kernel_count": 0,
+    "prefill_cpu_ms": [
+      207.864669
+    ],
+    "warmup_requests": 1
+  },
+  "path_redaction": "User-specific absolute paths were redacted from saved artifacts. Trace hashes describe sanitized files; recorded event timings and counts are unchanged."
+}

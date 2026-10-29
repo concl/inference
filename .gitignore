@@ -223,3 +223,6 @@ ignore/
 
 # Benchmark output from `vllm bench serve --result-dir`
 experiments/results/
+
+# Raw profiling data, logs, source/config snapshots, and generated IR.
+/experiments/**/artifacts/

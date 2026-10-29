@@ -1,0 +1,17 @@
+# Recorded workload; result paths may be overridden for a new replication.
+backend: openai-chat
+base-url: http://127.0.0.1:8000
+endpoint: /v1/chat/completions
+model: Qwen3.8-27B
+tokenizer: lued/Qwen3.8-27B-INT8-W8A16-MTP
+dataset-name: sharegpt
+dataset-path: ../benchmarks/ShareGPT_V3_unfiltered_cleaned_split.json
+sharegpt-output-len: 128
+num-prompts: 20
+max-concurrency: 2
+seed: 0
+percentile-metrics: ttft,tpot,itl
+metric-percentiles: 50,95
+save-result: true
+result-dir: experiments/exp2/artifacts/bench
+result-filename: bench-sharegpt.json

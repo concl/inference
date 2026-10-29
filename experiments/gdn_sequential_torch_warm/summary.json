@@ -1,0 +1,97 @@
+{
+  "experiment": "gdn_sequential_torch_warm",
+  "capture_dir": "experiments/gdn_sequential_torch_warm/artifacts/20261029T215922Z",
+  "benchmark": {
+    "completed": 1,
+    "failed": 0,
+    "total_input_tokens": 64,
+    "total_output_tokens": 32,
+    "mean_ttft_ms": 234.280283912085,
+    "mean_tpot_ms": 13.858995066144534
+  },
+  "unprofiled_requests": {
+    "successful_endpoint_check": 1,
+    "extra_warmups": 2
+  },
+  "jit_warnings_during_profile": 0,
+  "baseline_rank0": {
+    "trace": "experiments/gdn_sequential_initial/artifacts/torch/rank0.1793223620414335339.pt.trace.json.gz",
+    "prefill_annotation": "execute_context_1(64)_generation_0(0)",
+    "prefill_cpu_ms": 393.43604700000003,
+    "gpu_activity_selection": "External id correlation to CPU events inside prefill",
+    "prefill_gpu_activity_span_ms": 369.96399169921875,
+    "sequential_kernel_count": 48,
+    "sequential_kernel_total_ms": 3.757626,
+    "largest_internal_gpu_activity_gap_ms": 228.8600341796875,
+    "five_largest_internal_gpu_activity_gaps_ms": [
+      228.8600341796875,
+      8.96950830078125,
+      5.18948095703125,
+      1.742466796875,
+      0.6465048828125
+    ],
+    "longest_cpu_op": "vllm::qwen_gdn_attention_core_fused_norm_packed",
+    "longest_cpu_op_ms": 230.15624400000002
+  },
+  "warmed_ranks": [
+    {
+      "trace": "experiments/gdn_sequential_torch_warm/artifacts/20261029T215922Z/torch/rank0.1793311672023744218.pt.trace.json.gz",
+      "prefill_annotation": "execute_context_1(64)_generation_0(0)",
+      "prefill_cpu_ms": 191.21157399999998,
+      "gpu_activity_selection": "External id correlation to CPU events inside prefill",
+      "prefill_gpu_activity_span_ms": 181.33662646484376,
+      "sequential_kernel_count": 48,
+      "sequential_kernel_total_ms": 3.570551,
+      "largest_internal_gpu_activity_gap_ms": 18.38788818359375,
+      "five_largest_internal_gpu_activity_gaps_ms": [
+        18.38788818359375,
+        9.122697265625,
+        4.95737451171875,
+        4.11831689453125,
+        0.62481982421875
+      ],
+      "longest_cpu_op": "aten::zero_",
+      "longest_cpu_op_ms": 10.912362
+    },
+    {
+      "trace": "experiments/gdn_sequential_torch_warm/artifacts/20261029T215922Z/torch/rank1.1793311672058058161.pt.trace.json.gz",
+      "prefill_annotation": "execute_context_1(64)_generation_0(0)",
+      "prefill_cpu_ms": 212.20578,
+      "gpu_activity_selection": "External id correlation to CPU events inside prefill",
+      "prefill_gpu_activity_span_ms": 181.33998583984376,
+      "sequential_kernel_count": 48,
+      "sequential_kernel_total_ms": 3.500489,
+      "largest_internal_gpu_activity_gap_ms": 18.3824033203125,
+      "five_largest_internal_gpu_activity_gaps_ms": [
+        18.3824033203125,
+        8.8212490234375,
+        3.73339013671875,
+        3.54935693359375,
+        0.85657861328125
+      ],
+      "longest_cpu_op": "aten::zero_",
+      "longest_cpu_op_ms": 10.893782999999999
+    }
+  ],
+  "gpu_gap_reduction_factor_rank0": 12.446238083168442,
+  "artifact_sha256": {
+    "baseline-prefill-analysis.json": "84c634ea68282d0ed7569e7bc55ca7fe74e7f7321d8346b7b0840dbcdac984e9",
+    "bench/bench.json": "1937b7e75d56d1acd224a7db753b22394f55a5cec3d052dc694922a18216c317",
+    "bench-dry-run.txt": "ccbb295389886fb8ed5e5a0ca333ea22f1a17791938e6ee0dd21375c87f80de5",
+    "bench-sharegpt.log": "91f498a41d0d817ebe611964a84120121637dcbc7666ea49e61fc470a101f97a",
+    "benchmark-sharegpt.yaml": "daae734c3005fd3155809d1acf0d96ea1152ba1f4aa0178e80871d63d5264144",
+    "config.yaml": "ac882215910a2c68fcf76738141e6b84b2bd3946c223a96030c6aafda7aecc8e",
+    "environment.json": "c810ee0d73ef4e7360ff1925ce1d2a4f2abca8291a4ccdd3843fe6a1ff9e582c",
+    "kernel-db0084219d62.py": "fa40dd32279ba044ec1b51f80d075f59276084182afb2d52a0369b12958e9205",
+    "perfetto-health-rank0.txt": "6cd08614ca7b205f1aa371fe0feec1b3fb3ea90dc85acc14c1e37f8812c19ba3",
+    "prefill-analysis.json": "3c7d3e492b8419edbfaf12f68d3cdd3e77583b46854231ef56b5ea2c7e2c7d72",
+    "serve.log": "dfb871b8c8a0e013019c65144987d3912e8ebbe9404b6534674108ac7e26a7c8",
+    "torch/profiler_out_0.txt": "85fa8e5129b387730b00f42621ef921ae07d1e49c7a50618b764f765f398430b",
+    "torch/profiler_out_1.txt": "5ffbe612d7ee6d42bd57cd68052dfb8450a8c77eb004383490b7f3eed1bce4d3",
+    "torch/rank0.1793311672023744218.pt.trace.json.gz": "f51a4db8e30bc95741741b6a55ea1006957350449bf4af9558c8508e8a786828",
+    "torch/rank1.1793311672058058161.pt.trace.json.gz": "71c17f4bf838e6cc1d5737965b5a2483d50024a29218cd47aec2b15afe290b60"
+  },
+  "timings_modified": false,
+  "sanitization": "Local home-directory prefixes replaced with <USER_HOME>; gzip headers normalized; event timestamps/durations unchanged.",
+  "server_stopped": true
+}

@@ -13,15 +13,18 @@ work is a **branch** — which is also the pull request.
 
 ## Setup (once)
 
+Run these commands from the inference repository root. The fork is a sibling
+checkout at `../vllm`.
+
 ```bash
-git clone https://github.com/concl/vllm.git ~/vllm    # the fork
-git -C ~/vllm switch -c acmai/<change>                # a branch is a change
+git clone https://github.com/concl/vllm.git ../vllm    # the fork
+git -C ../vllm switch -c acmai/<change>                # a branch is a change
 ```
 
 Install it **editable**, so edits take effect without reinstalling:
 
 ```bash
-VLLM_USE_PRECOMPILED=1 uv pip install -e ~/vllm
+VLLM_USE_PRECOMPILED=1 uv pip install -e ../vllm
 ```
 
 `VLLM_USE_PRECOMPILED=1` reuses vLLM's prebuilt C++/CUDA binaries, so only the
@@ -31,8 +34,8 @@ when you are changing kernels and need them recompiled.
 ## Day to day
 
 ```bash
-# ...edit ~/vllm/vllm/..., run the server, run tests...
-git -C ~/vllm commit -s -am "..."      # -s = DCO sign-off, required upstream
+# ...edit ../vllm/vllm/..., run the server, run tests...
+git -C ../vllm commit -s -am "..."      # -s = DCO sign-off, required upstream
 ```
 
 Serve and benchmark from this repo, as usual:
@@ -45,7 +48,7 @@ vllm bench serve --save-result --result-dir experiments/results --label <name>
 ## Submitting
 
 ```bash
-git -C ~/vllm push -u origin acmai/<change>
+git -C ../vllm push -u origin acmai/<change>
 ```
 
 Then open the PR against `vllm-project/vllm` on GitHub. **The PR diff is the
@@ -67,12 +70,12 @@ Two consequences:
 - A git source is **not editable**, so it needs `uv sync --reinstall-package vllm`
   after each push.
 
-That is why the edit loop above uses the `-e ~/vllm` install, and why the
+That is why the edit loop above uses the `-e ../vllm` install, and why the
 `uv.sources` line stays commented unless you specifically want the pin.
 
 ## Rules
 
-1. **Never commit an ACM AI-specific file in the fork.** `git -C ~/vllm status` should only
+1. **Never commit an ACM AI-specific file in the fork.** `git -C ../vllm status` should only
    ever show your intended vLLM change. A `serve.py` or a notes file in there is a
    rebase conflict on every upstream pull, and a hunk you must strip from the PR.
 2. **If it ships in the PR, it lives in the fork.** vLLM's CI runs `pytest` inside
@@ -90,4 +93,4 @@ That is why the edit loop above uses the `-e ~/vllm` install, and why the
 
 `acmai/mamba-drop-eagle-block` — makes `MambaManager.find_longest_cache_hit` honour
 `drop_eagle_block`, so an MTP/EAGLE prefix-cache hit cannot resume from recurrent
-state taken over rejected draft tokens. Committed in `~/vllm`, **not yet pushed**.
+state taken over rejected draft tokens. Committed in `../vllm`, **not yet pushed**.

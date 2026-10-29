@@ -1,0 +1,19 @@
+# Settings for the warmed sequential Torch capture.
+backend: openai-chat
+base-url: http://127.0.0.1:8010
+endpoint: /v1/chat/completions
+model: Qwen3.8-27B
+tokenizer: lued/Qwen3.8-27B-INT8-W8A16-MTP
+dataset-name: sharegpt
+dataset-path: ../benchmarks/ShareGPT_V3_unfiltered_cleaned_split.json
+num-prompts: 1
+max-concurrency: 1
+sharegpt-output-len: 32
+seed: 0
+num-warmups: 2
+ready-check-timeout-sec: 600
+profile: true
+save-result: true
+result-dir: experiments/gdn_sequential_torch_warm/artifacts/bench
+result-filename: bench.json
+temperature: 0.0

@@ -36,6 +36,13 @@ def cmd_serve(args):
     return serve.run(args.extra)
 
 
+def cmd_bench(args):
+    """Run the serving benchmark using vLLM's YAML-aware argument parser."""
+    from scripts import bench
+
+    return bench.run(args.extra)
+
+
 def build_parser():
     parser = argparse.ArgumentParser(
         prog="inference",
@@ -82,15 +89,21 @@ def build_parser():
     )
     serve_cmd.set_defaults(func=cmd_serve)
 
+    bench_cmd = subparsers.add_parser(
+        "bench", add_help=False,
+        help="Benchmark a running server; accepts --config YAML and CLI overrides.",
+    )
+    bench_cmd.set_defaults(func=cmd_bench)
+
     return parser
 
 
 def main(argv=None):
     parser = build_parser()
-    # `serve` hands unrecognised arguments to scripts.serve, which owns that
-    # option list. Every other subcommand rejects them.
+    # Serving and benchmarking hand their arguments to their own parsers.
+    # Other subcommands reject unrecognised arguments.
     args, extra = parser.parse_known_args(argv)
-    if extra and args.command != "serve":
+    if extra and args.command not in {"serve", "bench"}:
         parser.error(f"unrecognized arguments: {' '.join(extra)}")
     args.extra = extra
     return args.func(args)

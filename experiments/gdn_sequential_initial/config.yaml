@@ -1,0 +1,42 @@
+# Server settings for this recorded experiment.
+model: lued/Qwen3.8-27B-INT8-W8A16-MTP
+served-model-name: Qwen3.8-27B
+tensor-parallel-size: 2
+dtype: bfloat16
+gpu-memory-utilization: 0.9
+max-model-len: 8192
+max-num-seqs: 1
+max-num-batched-tokens: 2048
+language-model-only: true
+kv-cache-dtype: fp8_e4m3
+mamba-cache-mode: align
+prefix-match-unit: 16
+no-enable-prefix-caching: true
+gdn-prefill-backend: triton
+host: 127.0.0.1
+port: 8000
+reasoning-parser: qwen3
+tool-call-parser: qwen3_coder
+enable-auto-tool-choice: true
+trust-remote-code: true
+disable-custom-all-reduce: true
+speculative-config:
+  method: mtp
+  num_speculative_tokens: 3
+default-chat-template-kwargs:
+  enable_thinking: true
+  preserve_thinking: true
+override-generation-config:
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  repetition_penalty: 1.0
+  presence_penalty: 0.0
+profiler_config:
+  profiler: torch
+  ignore_frontend: true
+  torch_profiler_dir: ./experiments/gdn_sequential_initial/artifacts/torch
+  torch_profiler_with_stack: false
+  torch_profiler_record_shapes: true
+  torch_profiler_with_memory: false
