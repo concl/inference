@@ -1,0 +1,93 @@
+{
+  "upstream_commit": "75fdd25e670afe27859eb586d2e0c7caf3a59234",
+  "upstream_url": "https://raw.githubusercontent.com/fla-org/flash-linear-attention/75fdd25e670afe27859eb586d2e0c7caf3a59234/fla/ops/gated_delta_rule/chunk_fwd.py",
+  "upstream_sha256": "1b0e316057bd99e5555bfffbc327745fa30f2a579b958becf9349a518e0b572c",
+  "baseline_files": {
+    "chunk_delta_h.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_delta_h.py",
+      "sha256": "1b3ad391f939d9443c6b7adb19e57fe381bd5dccea064e8417a4f85b0e713b26"
+    },
+    "chunk_scaled_dot_kkt.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_scaled_dot_kkt.py",
+      "sha256": "7ae41df3755acc7e925a134d848f78bb5fc00b90069039d86403c5853323ea42"
+    },
+    "fused_recurrent.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_recurrent.py",
+      "sha256": "fe6f1311014809040497aa0a623e7fa97f4b3457cdc7ee1f1f8aed21f326f755"
+    },
+    "wy_fast.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/wy_fast.py",
+      "sha256": "c9fc8259db0a8746dc04f1d799cb73333457118cf89a0bdce8dde8a80a28cd96"
+    },
+    "chunk_o.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_o.py",
+      "sha256": "3b63b836a8cc561723c23db5a528a0b474d9cd78508d610f0b348c585a889a19"
+    },
+    "utils.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+      "sha256": "d6c90d36505e02086954c23ca4dd2fea82a69416d68ff1d0501e16b3148b5b0c"
+    },
+    "fused_norm_gate.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_norm_gate.py",
+      "sha256": "e6eb90467f29d8a0a04f2a364d20a2c3191b6ab857841bfb82076b33a6022d1a"
+    },
+    "__init__.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/__init__.py",
+      "sha256": "dd738dc1d08045e76455cdbe16052a5b769e0eb11d6e87ff28353994f880cd6c"
+    },
+    "l2norm.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/l2norm.py",
+      "sha256": "520f4513ef4fc97e6b88dc07877cca8e29da0d34e44673fe989e3af002d86381"
+    },
+    "chunk.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py",
+      "sha256": "fa40dd32279ba044ec1b51f80d075f59276084182afb2d52a0369b12958e9205"
+    },
+    "cumsum.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/cumsum.py",
+      "sha256": "d818215669b451868823202ac0bcea77e7a9d75957254c7c1060a73a55dc39b6"
+    },
+    "solve_tril.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/solve_tril.py",
+      "sha256": "d1a4ff27623a938825052500afa7e2aa24fadd2fa4c9be6376c9128824f86f82"
+    },
+    "op.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/op.py",
+      "sha256": "456da84fd12411cf53c96a90dd4f78f49afb454c3d51d2c524ea8e7106fe8ae5"
+    },
+    "fused_gdn_prefill_post_conv.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_gdn_prefill_post_conv.py",
+      "sha256": "590717b2107abc90d72548de06b5d315229eb2775c94614f3f545df11cc2b5df"
+    },
+    "fused_sigmoid_gating.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_sigmoid_gating.py",
+      "sha256": "000ab8996af9788fdb8843a6a3b91833e7a14c8acc0e1ea073a536330f64cb6f"
+    },
+    "layernorm_guard.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py",
+      "sha256": "0ca5e46aab408b80d673561b91cf7bff7987c71d798d3bdacac75b7e29416f49"
+    },
+    "kda.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/kda.py",
+      "sha256": "5f0734e3fbb56bd4bb378aed1e1d969fbeebcf52629b9de77a645aff0be13fcc"
+    },
+    "index.py": {
+      "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/index.py",
+      "sha256": "4cce2dcb84935e3d8287e59dda24457734be2ffaebd786849c61c3b20c9f77cb"
+    }
+  },
+  "vllm_fork_commit": "db0084219d62a7b7b564adeedb9e6536cadcf0d8",
+  "adaptations": [
+    "Kernel body byte-for-byte extracted from pinned upstream source",
+    "exp2 symbol bound to vLLM natural exponential; no gate-conversion kernel",
+    "SOLVE_TRIL_DOT_PRECISION matches vLLM FLA_TRIL_PRECISION (ieee by default)",
+    "FLA cache autotuner replaced by triton.autotune; upstream configurations retained",
+    "Only KKT and triangular solve replaced in copied full forward function"
+  ],
+  "experiment_sha256": {
+    "candidate.py": "a67d696718e519cdfd794dd8b1f16d65141c778fb20081402653f4460e10ee43",
+    "candidate_full.py": "102bf3f911d64d575f10177dc87e1c61fd1cbaaf6d161bfee4e32aa6396d8103",
+    "adapter.diff": "f2d0d95dd248f0358beb83e10210a0470bcecb90c1b7f4354fa3d6c13fe65d90",
+    "UPSTREAM_LICENSE": "41a83c8187efc1e3ccc21909e806a9e52338e69448554d9754706c3d1cd610e7"
+  }
+}

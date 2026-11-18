@@ -1,0 +1,5161 @@
+{
+  "model_id": "Qwen/Qwen3.5-4B",
+  "run_directory": "/home/lukezeng/inference/experiments/gdn_fused_kkt_solve/artifacts/runs/qwen35-4b-20261118T045102Z",
+  "started_utc": "2026-11-18T04:51:02Z",
+  "ended_utc": "2026-11-18T04:59:00Z",
+  "status": "complete",
+  "model_profile": {
+    "config_path": "/home/lukezeng/.cache/huggingface/hub/models--Qwen--Qwen3.5-4B/snapshots/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a/config.json",
+    "config_sha256": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+    "config": {
+      "architectures": [
+        "Qwen3_5ForConditionalGeneration"
+      ],
+      "image_token_id": 248056,
+      "model_type": "qwen3_5",
+      "text_config": {
+        "attention_bias": false,
+        "attention_dropout": 0.0,
+        "attn_output_gate": true,
+        "dtype": "bfloat16",
+        "eos_token_id": 248044,
+        "full_attention_interval": 4,
+        "head_dim": 256,
+        "hidden_act": "silu",
+        "hidden_size": 2560,
+        "initializer_range": 0.02,
+        "intermediate_size": 9216,
+        "layer_types": [
+          "linear_attention",
+          "linear_attention",
+          "linear_attention",
+          "full_attention",
+          "linear_attention",
+          "linear_attention",
+          "linear_attention",
+          "full_attention",
+          "linear_attention",
+          "linear_attention",
+          "linear_attention",
+          "full_attention",
+          "linear_attention",
+          "linear_attention",
+          "linear_attention",
+          "full_attention",
+          "linear_attention",
+          "linear_attention",
+          "linear_attention",
+          "full_attention",
+          "linear_attention",
+          "linear_attention",
+          "linear_attention",
+          "full_attention",
+          "linear_attention",
+          "linear_attention",
+          "linear_attention",
+          "full_attention",
+          "linear_attention",
+          "linear_attention",
+          "linear_attention",
+          "full_attention"
+        ],
+        "linear_conv_kernel_dim": 4,
+        "linear_key_head_dim": 128,
+        "linear_num_key_heads": 16,
+        "linear_num_value_heads": 32,
+        "linear_value_head_dim": 128,
+        "max_position_embeddings": 262144,
+        "mlp_only_layers": [],
+        "model_type": "qwen3_5_text",
+        "mtp_num_hidden_layers": 1,
+        "mtp_use_dedicated_embeddings": false,
+        "num_attention_heads": 16,
+        "num_hidden_layers": 32,
+        "num_key_value_heads": 4,
+        "rms_norm_eps": 1e-06,
+        "tie_word_embeddings": true,
+        "use_cache": true,
+        "vocab_size": 248320,
+        "mamba_ssm_dtype": "float32",
+        "rope_parameters": {
+          "mrope_interleaved": true,
+          "mrope_section": [
+            11,
+            11,
+            10
+          ],
+          "rope_type": "default",
+          "rope_theta": 10000000,
+          "partial_rotary_factor": 0.25
+        }
+      },
+      "tie_word_embeddings": true,
+      "transformers_version": "4.57.0.dev0",
+      "video_token_id": 248057,
+      "vision_config": {
+        "deepstack_visual_indexes": [],
+        "depth": 24,
+        "hidden_act": "gelu_pytorch_tanh",
+        "hidden_size": 1024,
+        "in_channels": 3,
+        "initializer_range": 0.02,
+        "intermediate_size": 4096,
+        "model_type": "qwen3_5",
+        "num_heads": 16,
+        "num_position_embeddings": 2304,
+        "out_hidden_size": 2560,
+        "patch_size": 16,
+        "spatial_merge_size": 2,
+        "temporal_patch_size": 2
+      },
+      "vision_end_token_id": 248054,
+      "vision_start_token_id": 248053
+    },
+    "key_heads": 16,
+    "value_heads": 32,
+    "key_head_dim": 128,
+    "value_head_dim": 128,
+    "tp_sizes": [
+      1,
+      2
+    ],
+    "head_shapes": [
+      [
+        16,
+        32
+      ],
+      [
+        8,
+        16
+      ]
+    ]
+  },
+  "artifacts": {
+    "gpu0": {
+      "path": "gpu0/full/results.json",
+      "sha256": "d39ad91f737efece4ba019831feba8144b3b3593995276df4d0b5cf8256ebe21"
+    },
+    "gpu1": {
+      "path": "gpu1/full/results.json",
+      "sha256": "fa59263952ea6914b655dc67d3256226d211db4f1ba953be9a2ae2b1fb65ac8d"
+    }
+  },
+  "provenance": {
+    "upstream_commit": "75fdd25e670afe27859eb586d2e0c7caf3a59234",
+    "upstream_url": "https://raw.githubusercontent.com/fla-org/flash-linear-attention/75fdd25e670afe27859eb586d2e0c7caf3a59234/fla/ops/gated_delta_rule/chunk_fwd.py",
+    "upstream_sha256": "1b0e316057bd99e5555bfffbc327745fa30f2a579b958becf9349a518e0b572c",
+    "baseline_files": {
+      "chunk_delta_h.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_delta_h.py",
+        "sha256": "1b3ad391f939d9443c6b7adb19e57fe381bd5dccea064e8417a4f85b0e713b26"
+      },
+      "chunk_scaled_dot_kkt.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_scaled_dot_kkt.py",
+        "sha256": "7ae41df3755acc7e925a134d848f78bb5fc00b90069039d86403c5853323ea42"
+      },
+      "fused_recurrent.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_recurrent.py",
+        "sha256": "fe6f1311014809040497aa0a623e7fa97f4b3457cdc7ee1f1f8aed21f326f755"
+      },
+      "wy_fast.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/wy_fast.py",
+        "sha256": "c9fc8259db0a8746dc04f1d799cb73333457118cf89a0bdce8dde8a80a28cd96"
+      },
+      "chunk_o.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk_o.py",
+        "sha256": "3b63b836a8cc561723c23db5a528a0b474d9cd78508d610f0b348c585a889a19"
+      },
+      "utils.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/utils.py",
+        "sha256": "d6c90d36505e02086954c23ca4dd2fea82a69416d68ff1d0501e16b3148b5b0c"
+      },
+      "fused_norm_gate.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_norm_gate.py",
+        "sha256": "e6eb90467f29d8a0a04f2a364d20a2c3191b6ab857841bfb82076b33a6022d1a"
+      },
+      "__init__.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/__init__.py",
+        "sha256": "dd738dc1d08045e76455cdbe16052a5b769e0eb11d6e87ff28353994f880cd6c"
+      },
+      "l2norm.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/l2norm.py",
+        "sha256": "520f4513ef4fc97e6b88dc07877cca8e29da0d34e44673fe989e3af002d86381"
+      },
+      "chunk.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/chunk.py",
+        "sha256": "fa40dd32279ba044ec1b51f80d075f59276084182afb2d52a0369b12958e9205"
+      },
+      "cumsum.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/cumsum.py",
+        "sha256": "d818215669b451868823202ac0bcea77e7a9d75957254c7c1060a73a55dc39b6"
+      },
+      "solve_tril.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/solve_tril.py",
+        "sha256": "d1a4ff27623a938825052500afa7e2aa24fadd2fa4c9be6376c9128824f86f82"
+      },
+      "op.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/op.py",
+        "sha256": "456da84fd12411cf53c96a90dd4f78f49afb454c3d51d2c524ea8e7106fe8ae5"
+      },
+      "fused_gdn_prefill_post_conv.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_gdn_prefill_post_conv.py",
+        "sha256": "590717b2107abc90d72548de06b5d315229eb2775c94614f3f545df11cc2b5df"
+      },
+      "fused_sigmoid_gating.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/fused_sigmoid_gating.py",
+        "sha256": "000ab8996af9788fdb8843a6a3b91833e7a14c8acc0e1ea073a536330f64cb6f"
+      },
+      "layernorm_guard.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/layernorm_guard.py",
+        "sha256": "0ca5e46aab408b80d673561b91cf7bff7987c71d798d3bdacac75b7e29416f49"
+      },
+      "kda.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/kda.py",
+        "sha256": "5f0734e3fbb56bd4bb378aed1e1d969fbeebcf52629b9de77a645aff0be13fcc"
+      },
+      "index.py": {
+        "path": "/home/lukezeng/inference/.venv/lib/python3.12/site-packages/vllm/third_party/flash_linear_attention/ops/index.py",
+        "sha256": "4cce2dcb84935e3d8287e59dda24457734be2ffaebd786849c61c3b20c9f77cb"
+      }
+    },
+    "vllm_fork_commit": "db0084219d62a7b7b564adeedb9e6536cadcf0d8",
+    "adaptations": [
+      "Kernel body byte-for-byte extracted from pinned upstream source",
+      "exp2 symbol bound to vLLM natural exponential; no gate-conversion kernel",
+      "SOLVE_TRIL_DOT_PRECISION matches vLLM FLA_TRIL_PRECISION (ieee by default)",
+      "FLA cache autotuner replaced by triton.autotune; upstream configurations retained",
+      "Only KKT and triangular solve replaced in copied full forward function"
+    ],
+    "experiment_sha256": {
+      "candidate.py": "a67d696718e519cdfd794dd8b1f16d65141c778fb20081402653f4460e10ee43",
+      "candidate_full.py": "102bf3f911d64d575f10177dc87e1c61fd1cbaaf6d161bfee4e32aa6396d8103",
+      "adapter.diff": "f2d0d95dd248f0358beb83e10210a0470bcecb90c1b7f4354fa3d6c13fe65d90",
+      "UPSTREAM_LICENSE": "41a83c8187efc1e3ccc21909e806a9e52338e69448554d9754706c3d1cd610e7"
+    }
+  },
+  "harness_sha256": {
+    "benchmark.py": "c38a5b01fc3dbef282043fbc3ca5ca8855dd30ac5120ea39321f4cf66c5df5e5",
+    "candidate.py": "a67d696718e519cdfd794dd8b1f16d65141c778fb20081402653f4460e10ee43",
+    "candidate_full.py": "102bf3f911d64d575f10177dc87e1c61fd1cbaaf6d161bfee4e32aa6396d8103",
+    "wait_and_run.py": "786b3349c410422c144c5189547bf891524b2d9786ce749f7599adec5be31e2c"
+  },
+  "rounds": 7,
+  "iterations": 20,
+  "correctness": {
+    "gpu0": {
+      "gpu_uuid": "GPU-67751770-3027-4921-76f0-658c833d2890",
+      "gpu_name": "NVIDIA GeForce RTX 3090",
+      "versions": {
+        "torch": "2.13.0",
+        "triton": "3.7.1",
+        "vllm": "0.29.0"
+      },
+      "cases_passed": 22,
+      "performance_shapes": 12,
+      "maximum_errors": {
+        "baseline_inverse": {
+          "max_abs": 0.0010615504976810297,
+          "relative_l2": 0.0003644182166998549
+        },
+        "fused_inverse": {
+          "max_abs": 0.000937923571653454,
+          "relative_l2": 0.00035353321127595225
+        },
+        "baseline_output": {
+          "max_abs": 0.0007846193557456554,
+          "relative_l2": 0.00389066848187335
+        },
+        "fused_output": {
+          "max_abs": 0.0007456407624834571,
+          "relative_l2": 0.0038871743543806817
+        },
+        "baseline_state": {
+          "max_abs": 0.007939866846882415,
+          "relative_l2": 0.003165774286506623
+        },
+        "fused_state": {
+          "max_abs": 0.008128038710438323,
+          "relative_l2": 0.003164366096066191
+        },
+        "output_delta": {
+          "max_abs": 0.00048828125,
+          "relative_l2": 0.002295201641143392
+        },
+        "state_delta": {
+          "max_abs": 0.005905956029891968,
+          "relative_l2": 0.0016204286182840454
+        }
+      }
+    },
+    "gpu1": {
+      "gpu_uuid": "GPU-93760e38-5ff5-b135-10fe-1fbee2924fd7",
+      "gpu_name": "NVIDIA GeForce RTX 3090",
+      "versions": {
+        "torch": "2.13.0",
+        "triton": "3.7.1",
+        "vllm": "0.29.0"
+      },
+      "cases_passed": 22,
+      "performance_shapes": 12,
+      "maximum_errors": {
+        "baseline_inverse": {
+          "max_abs": 0.0010615504976810297,
+          "relative_l2": 0.0003644182166998549
+        },
+        "fused_inverse": {
+          "max_abs": 0.000937923571653454,
+          "relative_l2": 0.00035353321127595225
+        },
+        "baseline_output": {
+          "max_abs": 0.0007846193557456554,
+          "relative_l2": 0.00389066848187335
+        },
+        "fused_output": {
+          "max_abs": 0.0007456407624834571,
+          "relative_l2": 0.0038871743543806817
+        },
+        "baseline_state": {
+          "max_abs": 0.007939866846882415,
+          "relative_l2": 0.003165774286506623
+        },
+        "fused_state": {
+          "max_abs": 0.008128038710438323,
+          "relative_l2": 0.003164366096066191
+        },
+        "output_delta": {
+          "max_abs": 0.00048828125,
+          "relative_l2": 0.002295201641143392
+        },
+        "state_delta": {
+          "max_abs": 0.005905956029891968,
+          "relative_l2": 0.0016204286182840454
+        }
+      }
+    }
+  },
+  "measurements": [
+    {
+      "case": {
+        "name": "h16_32_n1_t64_fixed",
+        "lengths": [
+          64
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 148.78720045089722,
+          "fused_us": 73.62560033798218,
+          "speedup": 2.020862305609486,
+          "paired_round_speedups": [
+            2.0640126153861256,
+            1.5806819172210091,
+            2.0345097002264483,
+            2.0566170614928283,
+            2.0188031793266474,
+            2.0354658709622786,
+            2.0309120165862744
+          ],
+          "paired_speedup_range": [
+            1.5806819172210091,
+            2.0640126153861256
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1905,
+            1980
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0016177645477221385,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.004937648773193359,
+              "relative_l2": 0.0011720548022081019,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 140.6000018119812,
+          "fused_us": 73.58239889144897,
+          "speedup": 1.910783066741255,
+          "paired_round_speedups": [
+            1.9945158635212676,
+            1.6572683837492928,
+            2.0288611929791935,
+            2.0223076830082434,
+            2.013698900889893,
+            1.993908913530232,
+            2.0013633369027684
+          ],
+          "paired_speedup_range": [
+            1.6572683837492928,
+            2.0288611929791935
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1935,
+            1935
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0016177645477221385,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.004937648773193359,
+              "relative_l2": 0.0011720548022081019,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t64_fixed",
+        "lengths": [
+          64
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 23.756800591945648,
+          "fused_us": 23.395200073719025,
+          "speedup": 1.0154561840500278,
+          "paired_round_speedups": [
+            0.9081632798519768,
+            1.0241227987595896,
+            0.9149377763731724,
+            1.0242290674062031,
+            1.0197802424137987,
+            0.9092139307375636,
+            1.028587055253186
+          ],
+          "paired_speedup_range": [
+            0.9081632798519768,
+            1.028587055253186
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0016177645477221385,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.004937648773193359,
+              "relative_l2": 0.0011720548022081019,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 22.579200565814972,
+          "fused_us": 22.118400037288666,
+          "speedup": 1.0208333571935337,
+          "paired_round_speedups": [
+            0.9217705914293565,
+            1.0277777871347191,
+            0.9042009769660786,
+            1.0255220339296647,
+            1.0255814556342209,
+            0.9082969429539499,
+            1.0300926195717734
+          ],
+          "paired_speedup_range": [
+            0.9042009769660786,
+            1.0300926195717734
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0016177645477221385,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.004937648773193359,
+              "relative_l2": 0.0011720548022081019,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t64_fixed",
+        "lengths": [
+          64
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 940.8512115478516,
+          "fused_us": 807.1167945861816,
+          "speedup": 1.1656940084244403,
+          "paired_round_speedups": [
+            1.309978320110853,
+            1.2315122215491787,
+            1.2117732821982683,
+            1.043024162581492,
+            1.2047068773836191,
+            1.1132283986747602,
+            1.2259413859092845
+          ],
+          "paired_speedup_range": [
+            1.043024162581492,
+            1.309978320110853
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0016177645477221385,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.004937648773193359,
+              "relative_l2": 0.0011720548022081019,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 984.3711853027344,
+          "fused_us": 820.582389831543,
+          "speedup": 1.1996006708172418,
+          "paired_round_speedups": [
+            1.2870582883972412,
+            1.203094801166376,
+            1.1982913029086124,
+            1.1129654798539184,
+            1.203731541188459,
+            1.1128777016211797,
+            1.2035890728199732
+          ],
+          "paired_speedup_range": [
+            1.1128777016211797,
+            1.2870582883972412
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0016177645477221385,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.004937648773193359,
+              "relative_l2": 0.0011720548022081019,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t64_fixed",
+        "lengths": [
+          64
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 53.811198472976685,
+          "fused_us": 56.063997745513916,
+          "speedup": 0.9598173629578977,
+          "paired_round_speedups": [
+            0.9367200783323599,
+            0.9411231631898135,
+            0.985185179595972,
+            0.9888991902511803,
+            0.9898236782003842,
+            0.949743237757945,
+            0.9402714615590297
+          ],
+          "paired_speedup_range": [
+            0.9367200783323599,
+            0.9898236782003842
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0016177645477221385,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.004937648773193359,
+              "relative_l2": 0.0011720548022081019,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 50.17600059509277,
+          "fused_us": 52.99199819564819,
+          "speedup": 0.9468599468516234,
+          "paired_round_speedups": [
+            0.9360076017977994,
+            0.9344894077757361,
+            0.988045104072298,
+            0.9890873338973933,
+            0.9881305887414065,
+            0.9354751010923259,
+            0.9362319024783754
+          ],
+          "paired_speedup_range": [
+            0.9344894077757361,
+            0.9890873338973933
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0016177645477221385,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.004937648773193359,
+              "relative_l2": 0.0011720548022081019,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t256_fixed",
+        "lengths": [
+          256
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 186.11199855804443,
+          "fused_us": 93.39200258255005,
+          "speedup": 1.9928044523249016,
+          "paired_round_speedups": [
+            1.6094298076669145,
+            1.7656721276859804,
+            2.0771427769350788,
+            1.751650436958194,
+            1.4791159733831623,
+            1.7306225433703872,
+            1.9566928881236507
+          ],
+          "paired_speedup_range": [
+            1.4791159733831623,
+            2.0771427769350788
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0027638870702714666,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0054375529289245605,
+              "relative_l2": 0.001914391056297171,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 283.90400409698486,
+          "fused_us": 160.92159748077393,
+          "speedup": 1.7642380422609478,
+          "paired_round_speedups": [
+            1.7719840249700611,
+            1.5960614270304074,
+            1.9585202968120994,
+            1.7836461768289134,
+            1.7638668460834128,
+            1.750851032796228,
+            1.7676451928506012
+          ],
+          "paired_speedup_range": [
+            1.5960614270304074,
+            1.9585202968120994
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0027638870702714666,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0054375529289245605,
+              "relative_l2": 0.001914391056297171,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t256_fixed",
+        "lengths": [
+          256
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 29.132801294326782,
+          "fused_us": 25.804799795150757,
+          "speedup": 1.1289683130888473,
+          "paired_round_speedups": [
+            1.0487805330860873,
+            1.144869264071292,
+            1.0510396449178716,
+            1.1422844814764914,
+            1.1507936452940608,
+            1.049713124168621,
+            1.1540000011641531
+          ],
+          "paired_speedup_range": [
+            1.0487805330860873,
+            1.1540000011641531
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0027638870702714666,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0054375529289245605,
+              "relative_l2": 0.001914391056297171,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 27.748799324035645,
+          "fused_us": 25.34399926662445,
+          "speedup": 1.0948863686473538,
+          "paired_round_speedups": [
+            1.0349049666338488,
+            1.1440500440051122,
+            1.0545455186861297,
+            1.1474142305267843,
+            1.0904803537432972,
+            1.0416666377938189,
+            1.1497890647698992
+          ],
+          "paired_speedup_range": [
+            1.0349049666338488,
+            1.1497890647698992
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0027638870702714666,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0054375529289245605,
+              "relative_l2": 0.001914391056297171,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t256_fixed",
+        "lengths": [
+          256
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 421.7343807220459,
+          "fused_us": 372.4287986755371,
+          "speedup": 1.1323892841312313,
+          "paired_round_speedups": [
+            1.2499828980973275,
+            1.1176222792201973,
+            1.0879846327933609,
+            1.2273649702807328,
+            1.1000247625925839,
+            1.0913811876767883,
+            1.1039796381360452
+          ],
+          "paired_speedup_range": [
+            1.0879846327933609,
+            1.2499828980973275
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0027638870702714666,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0054375529289245605,
+              "relative_l2": 0.001914391056297171,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 593.7151908874512,
+          "fused_us": 769.3344116210938,
+          "speedup": 0.7717257695992193,
+          "paired_round_speedups": [
+            1.273775035625362,
+            1.1474728823005567,
+            1.0983443257145666,
+            1.2224828339014246,
+            1.1009643006788872,
+            1.1304212751455638,
+            0.7713760375709038
+          ],
+          "paired_speedup_range": [
+            0.7713760375709038,
+            1.273775035625362
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0027638870702714666,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0054375529289245605,
+              "relative_l2": 0.001914391056297171,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t256_fixed",
+        "lengths": [
+          256
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 84.63360071182251,
+          "fused_us": 83.60959887504578,
+          "speedup": 1.0122474195613245,
+          "paired_round_speedups": [
+            0.9773134678978659,
+            1.0122474195613245,
+            1.035473991570961,
+            0.9830815831526845,
+            1.0134721686463806,
+            1.0153269185746123,
+            1.0140845431889087
+          ],
+          "paired_speedup_range": [
+            0.9773134678978659,
+            1.035473991570961
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0027638870702714666,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0054375529289245605,
+              "relative_l2": 0.001914391056297171,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 80.9984028339386,
+          "fused_us": 79.51359748840332,
+          "speedup": 1.0186736029111478,
+          "paired_round_speedups": [
+            0.9962836937989322,
+            1.0264005670693204,
+            1.0252426845026492,
+            0.9911953928379542,
+            1.018018080783246,
+            1.0257566471426747,
+            1.0226244558411557
+          ],
+          "paired_speedup_range": [
+            0.9911953928379542,
+            1.0264005670693204
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0027638870702714666,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0054375529289245605,
+              "relative_l2": 0.001914391056297171,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t2048_fixed",
+        "lengths": [
+          2048
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 189.12960290908813,
+          "fused_us": 137.36480474472046,
+          "speedup": 1.3768417846228347,
+          "paired_round_speedups": [
+            1.9507017343076418,
+            1.3667434870680193,
+            1.3464745840380918,
+            1.335864764325594,
+            1.6836897590763698,
+            1.5220178923675873,
+            1.7291730308335909
+          ],
+          "paired_speedup_range": [
+            1.335864764325594,
+            1.9507017343076418
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031439091468848197,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0052457451820373535,
+              "relative_l2": 0.0019697138135538143,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 180.58240413665771,
+          "fused_us": 131.84000253677368,
+          "speedup": 1.3697087428854415,
+          "paired_round_speedups": [
+            1.9302758364635357,
+            1.3786209035557733,
+            1.313009644794481,
+            1.365508848269742,
+            1.7525773210873576,
+            1.9439485767613398,
+            1.3804306155085628
+          ],
+          "paired_speedup_range": [
+            1.313009644794481,
+            1.9439485767613398
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031439091468848197,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0052457451820373535,
+              "relative_l2": 0.0019697138135538143,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t2048_fixed",
+        "lengths": [
+          2048
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 173.10559749603271,
+          "fused_us": 119.34720277786255,
+          "speedup": 1.450436989446909,
+          "paired_round_speedups": [
+            1.4334892002400936,
+            1.4561855340162766,
+            1.4548058088240008,
+            1.4279642962666552,
+            1.4298469484979999,
+            1.4586014439894486,
+            1.459319835837858
+          ],
+          "paired_speedup_range": [
+            1.4279642962666552,
+            1.459319835837858
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031439091468848197,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0052457451820373535,
+              "relative_l2": 0.0019697138135538143,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 165.63199758529663,
+          "fused_us": 112.74240016937256,
+          "speedup": 1.4691189591180265,
+          "paired_round_speedups": [
+            1.442806006614346,
+            1.479078192805353,
+            1.4738755237234962,
+            1.447191078724804,
+            1.4476405203602816,
+            1.4691189591180265,
+            1.4793088307401674
+          ],
+          "paired_speedup_range": [
+            1.442806006614346,
+            1.4793088307401674
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031439091468848197,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0052457451820373535,
+              "relative_l2": 0.0019697138135538143,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t2048_fixed",
+        "lengths": [
+          2048
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 598.528003692627,
+          "fused_us": 559.8207950592041,
+          "speedup": 1.0691421415121412,
+          "paired_round_speedups": [
+            0.9422901114989208,
+            0.8836646560171539,
+            1.1516029961052083,
+            1.113257110831412,
+            1.0305800377012317,
+            1.2067502253252924,
+            1.1450214133517644
+          ],
+          "paired_speedup_range": [
+            0.8836646560171539,
+            1.2067502253252924
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031439091468848197,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0052457451820373535,
+              "relative_l2": 0.0019697138135538143,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 896.7679977416992,
+          "fused_us": 609.2864036560059,
+          "speedup": 1.4718332665240323,
+          "paired_round_speedups": [
+            0.8428482456336691,
+            1.179503645525617,
+            1.2212678264626764,
+            1.1395009540501195,
+            1.0739111682883555,
+            1.1344952049088242,
+            1.75853406092439
+          ],
+          "paired_speedup_range": [
+            0.8428482456336691,
+            1.75853406092439
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031439091468848197,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0052457451820373535,
+              "relative_l2": 0.0019697138135538143,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t2048_fixed",
+        "lengths": [
+          2048
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 513.3312225341797,
+          "fused_us": 462.43839263916016,
+          "speedup": 1.1100532107738104,
+          "paired_round_speedups": [
+            1.114873838049846,
+            1.109305816417347,
+            1.1088816937587973,
+            1.1117263324327764,
+            1.113391753253765,
+            1.1090049391223613,
+            1.1100532107738104
+          ],
+          "paired_speedup_range": [
+            1.1088816937587973,
+            1.114873838049846
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1620,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031439091468848197,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0052457451820373535,
+              "relative_l2": 0.0019697138135538143,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 498.2272148132324,
+          "fused_us": 449.07522201538086,
+          "speedup": 1.1094515804663303,
+          "paired_round_speedups": [
+            1.1114279486854841,
+            1.107378668514182,
+            1.1108834756823442,
+            1.1089582636088633,
+            1.1136364627482123,
+            1.1094515804663303,
+            1.1077414127942968
+          ],
+          "paired_speedup_range": [
+            1.107378668514182,
+            1.1136364627482123
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1350,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031439091468848197,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0052457451820373535,
+              "relative_l2": 0.0019697138135538143,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t256_fixed",
+        "lengths": [
+          64,
+          64,
+          64,
+          64
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 261.63198947906494,
+          "fused_us": 139.92960453033447,
+          "speedup": 1.869740076499304,
+          "paired_round_speedups": [
+            1.7316163985997655,
+            2.0237762429045674,
+            1.9952432010983676,
+            2.039860282070265,
+            2.0265475039857415,
+            1.6959172676106475,
+            1.7572417955054889
+          ],
+          "paired_speedup_range": [
+            1.6959172676106475,
+            2.039860282070265
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1350,
+            1980
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0015974499143605364,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005632758140563965,
+              "relative_l2": 0.001154128247236507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 140.64480066299438,
+          "fused_us": 86.11840009689331,
+          "speedup": 1.6331562187030004,
+          "paired_round_speedups": [
+            1.4387633952023322,
+            2.034536788108678,
+            2.02023700495655,
+            2.020897992871814,
+            1.981311523993225,
+            1.7452451800970594,
+            1.6935688932520312
+          ],
+          "paired_speedup_range": [
+            1.4387633952023322,
+            2.034536788108678
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1845,
+            1845
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0015974499143605364,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005632758140563965,
+              "relative_l2": 0.001154128247236507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t256_fixed",
+        "lengths": [
+          64,
+          64,
+          64,
+          64
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 29.337599873542786,
+          "fused_us": 25.651198625564575,
+          "speedup": 1.1437126312025145,
+          "paired_round_speedups": [
+            1.1540000011641531,
+            1.1437126312025145,
+            1.0477437245228012,
+            1.140004952953335,
+            1.0452830325443414,
+            1.1479999557621798,
+            1.1497007010712301
+          ],
+          "paired_speedup_range": [
+            1.0452830325443414,
+            1.1540000011641531
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1980
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0015974499143605364,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005632758140563965,
+              "relative_l2": 0.001154128247236507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 28.006398677825928,
+          "fused_us": 24.62559938430786,
+          "speedup": 1.1372880002129981,
+          "paired_round_speedups": [
+            1.1663960217742266,
+            1.1491596421573889,
+            1.0478087829566107,
+            1.144067717705432,
+            1.0415841289724999,
+            1.144628181420054,
+            1.1506276046177673
+          ],
+          "paired_speedup_range": [
+            1.0415841289724999,
+            1.1663960217742266
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0015974499143605364,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005632758140563965,
+              "relative_l2": 0.001154128247236507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t256_fixed",
+        "lengths": [
+          64,
+          64,
+          64,
+          64
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 935.2208137512207,
+          "fused_us": 770.9695816040039,
+          "speedup": 1.2130450228730059,
+          "paired_round_speedups": [
+            1.0377108181342642,
+            1.1244094457492706,
+            1.1183939999799697,
+            1.2532209116001802,
+            1.2048725027430047,
+            1.2339836242652376,
+            1.2012233460450035
+          ],
+          "paired_speedup_range": [
+            1.0377108181342642,
+            1.2532209116001802
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0015974499143605364,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005632758140563965,
+              "relative_l2": 0.001154128247236507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 460.9519958496094,
+          "fused_us": 388.7615919113159,
+          "speedup": 1.1856932511860931,
+          "paired_round_speedups": [
+            1.1256022321178698,
+            1.1084754905018586,
+            1.114670061026681,
+            1.225602503348033,
+            1.2391424957371153,
+            1.2233834120369675,
+            1.21231878504177
+          ],
+          "paired_speedup_range": [
+            1.1084754905018586,
+            1.2391424957371153
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0015974499143605364,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005632758140563965,
+              "relative_l2": 0.001154128247236507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t256_fixed",
+        "lengths": [
+          64,
+          64,
+          64,
+          64
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 100.81280469894409,
+          "fused_us": 99.68640208244324,
+          "speedup": 1.0112994610395236,
+          "paired_round_speedups": [
+            1.0143589646844857,
+            0.9837810966996579,
+            1.0066975696067364,
+            1.0123266902060395,
+            1.013903238486018,
+            1.0174986667360086,
+            0.984740533587181
+          ],
+          "paired_speedup_range": [
+            0.9837810966996579,
+            1.0174986667360086
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0015974499143605364,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005632758140563965,
+              "relative_l2": 0.001154128247236507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 97.58719801902771,
+          "fused_us": 95.23199796676636,
+          "speedup": 1.0247311838724968,
+          "paired_round_speedups": [
+            1.0262768789527228,
+            0.9995018305700591,
+            1.0344086145337148,
+            1.0284946534697588,
+            1.026386594522186,
+            1.0248860462436646,
+            0.9952153364715339
+          ],
+          "paired_speedup_range": [
+            0.9952153364715339,
+            1.0344086145337148
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.0015974499143605364,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005632758140563965,
+              "relative_l2": 0.001154128247236507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t1024_fixed",
+        "lengths": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 298.035192489624,
+          "fused_us": 153.85600328445435,
+          "speedup": 1.9371047351243498,
+          "paired_round_speedups": [
+            2.022961672357781,
+            1.3279336437141578,
+            1.9676864687980136,
+            1.7043421179763782,
+            1.903564017365164,
+            1.7333554621422302,
+            1.9487780366257343
+          ],
+          "paired_speedup_range": [
+            1.3279336437141578,
+            2.022961672357781
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0027462954957485036,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00593191385269165,
+              "relative_l2": 0.0018978248047271068,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 272.6399898529053,
+          "fused_us": 151.75360441207886,
+          "speedup": 1.79659646905365,
+          "paired_round_speedups": [
+            1.8936699209965548,
+            1.6917917273066165,
+            1.9591653269850822,
+            1.7443583857221883,
+            1.9911241931006358,
+            1.6834490895520147,
+            1.9971879143956424
+          ],
+          "paired_speedup_range": [
+            1.6834490895520147,
+            1.9971879143956424
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0027462954957485036,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00593191385269165,
+              "relative_l2": 0.0018978248047271068,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t1024_fixed",
+        "lengths": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 98.6624002456665,
+          "fused_us": 66.66240096092224,
+          "speedup": 1.4800307043171574,
+          "paired_round_speedups": [
+            1.437874172643045,
+            1.4976957903165165,
+            1.4976887791503566,
+            1.4823076919632683,
+            1.449311031217805,
+            1.4451172719088163,
+            1.4880677879520448
+          ],
+          "paired_speedup_range": [
+            1.437874172643045,
+            1.4976957903165165
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0027462954957485036,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00593191385269165,
+              "relative_l2": 0.0018978248047271068,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 93.9520001411438,
+          "fused_us": 63.129597902297974,
+          "speedup": 1.4882401165701684,
+          "paired_round_speedups": [
+            1.4459352813497415,
+            1.4971568086085683,
+            1.4995938703311047,
+            1.4959283078824925,
+            1.4502644183103803,
+            1.4539631915060993,
+            1.4882401165701684
+          ],
+          "paired_speedup_range": [
+            1.4459352813497415,
+            1.4995938703311047
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0027462954957485036,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00593191385269165,
+              "relative_l2": 0.0018978248047271068,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t1024_fixed",
+        "lengths": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 910.8991622924805,
+          "fused_us": 765.7472133636475,
+          "speedup": 1.1895559610216975,
+          "paired_round_speedups": [
+            1.0186367952325412,
+            1.2049344901510273,
+            1.1409424427447714,
+            1.1320055459753506,
+            1.2223352150035178,
+            1.13449237233588,
+            1.1984506355421938
+          ],
+          "paired_speedup_range": [
+            1.0186367952325412,
+            1.2223352150035178
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0027462954957485036,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00593191385269165,
+              "relative_l2": 0.0018978248047271068,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 596.2240219116211,
+          "fused_us": 531.0463905334473,
+          "speedup": 1.122734345887751,
+          "paired_round_speedups": [
+            0.8795150579397334,
+            1.2123147779881887,
+            1.1057637831432678,
+            1.122734345887751,
+            1.1955440105779676,
+            1.0688469207794917,
+            1.2170599222763603
+          ],
+          "paired_speedup_range": [
+            0.8795150579397334,
+            1.2170599222763603
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0027462954957485036,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00593191385269165,
+              "relative_l2": 0.0018978248047271068,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t1024_fixed",
+        "lengths": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 294.39520835876465,
+          "fused_us": 263.8848066329956,
+          "speedup": 1.1156201530321606,
+          "paired_round_speedups": [
+            1.1054152484368849,
+            1.1218136089811468,
+            1.1215480095244124,
+            1.1209935988760449,
+            1.1127279754820394,
+            1.112604756405765,
+            1.1115205466263671
+          ],
+          "paired_speedup_range": [
+            1.1054152484368849,
+            1.1218136089811468
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0027462954957485036,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00593191385269165,
+              "relative_l2": 0.0018978248047271068,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 283.0336093902588,
+          "fused_us": 255.53278923034668,
+          "speedup": 1.107621492500995,
+          "paired_round_speedups": [
+            1.103055666098827,
+            1.115601113093339,
+            1.114944822173436,
+            1.1134019780228819,
+            1.1042020271309405,
+            1.107214506827973,
+            1.1051579948188897
+          ],
+          "paired_speedup_range": [
+            1.103055666098827,
+            1.115601113093339
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0027462954957485036,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00593191385269165,
+              "relative_l2": 0.0018978248047271068,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t8192_fixed",
+        "lengths": [
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 632.3200225830078,
+          "fused_us": 405.5039882659912,
+          "speedup": 1.5593435351571343,
+          "paired_round_speedups": [
+            1.5918287758863918,
+            1.591002809213683,
+            1.5210790570352104,
+            1.5293679920721026,
+            1.5385573562181645,
+            1.5934290604309649,
+            1.5438131428198496
+          ],
+          "paired_speedup_range": [
+            1.5210790570352104,
+            1.5934290604309649
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031425754556783816,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005594968795776367,
+              "relative_l2": 0.001964002233897704,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 603.7504196166992,
+          "fused_us": 387.37919330596924,
+          "speedup": 1.558551491793289,
+          "paired_round_speedups": [
+            1.5888429384400178,
+            1.6116223079426668,
+            1.5458381823080165,
+            1.5378195234623628,
+            1.5464257609573042,
+            1.6100106705734352,
+            1.5496960492214944
+          ],
+          "paired_speedup_range": [
+            1.5378195234623628,
+            1.6116223079426668
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1755,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031425754556783816,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005594968795776367,
+              "relative_l2": 0.001964002233897704,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t8192_fixed",
+        "lengths": [
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 621.5167999267578,
+          "fused_us": 395.2127933502197,
+          "speedup": 1.5726130590514504,
+          "paired_round_speedups": [
+            1.5792619534757417,
+            1.575804449027966,
+            1.5735198890279485,
+            1.57057835204584,
+            1.5612928618549773,
+            1.572837201662294,
+            1.5717249742844444
+          ],
+          "paired_speedup_range": [
+            1.5612928618549773,
+            1.5792619534757417
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031425754556783816,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005594968795776367,
+              "relative_l2": 0.001964002233897704,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 595.1935768127441,
+          "fused_us": 375.2959966659546,
+          "speedup": 1.5859310573528902,
+          "paired_round_speedups": [
+            1.5933315876867649,
+            1.5898768673034103,
+            1.592602627087174,
+            1.5860706033121927,
+            1.5859310573528902,
+            1.5792558406629869,
+            1.5817190143862658
+          ],
+          "paired_speedup_range": [
+            1.5792558406629869,
+            1.5933315876867649
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1470,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031425754556783816,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005594968795776367,
+              "relative_l2": 0.001964002233897704,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t8192_fixed",
+        "lengths": [
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 2486.016082763672,
+          "fused_us": 3021.414375305176,
+          "speedup": 0.8227987869133553,
+          "paired_round_speedups": [
+            1.8780073926429748,
+            2.0645669537051377,
+            0.8227987869133553,
+            0.7403270511066918,
+            0.9175649625688281,
+            0.7295005538579936,
+            0.6362832979363331
+          ],
+          "paired_speedup_range": [
+            0.6362832979363331,
+            2.0645669537051377
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            675,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031425754556783816,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005594968795776367,
+              "relative_l2": 0.001964002233897704,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 2450.636863708496,
+          "fused_us": 3092.9407119750977,
+          "speedup": 0.792332311518368,
+          "paired_round_speedups": [
+            2.060326000995748,
+            1.2898323428122,
+            0.792332311518368,
+            0.7650370080309943,
+            0.658533542027088,
+            0.9099653796599954,
+            0.6944024185094564
+          ],
+          "paired_speedup_range": [
+            0.658533542027088,
+            2.060326000995748
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            765,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031425754556783816,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005594968795776367,
+              "relative_l2": 0.001964002233897704,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t8192_fixed",
+        "lengths": [
+          2048,
+          2048,
+          2048,
+          2048
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 3502.2335052490234,
+          "fused_us": 2204.462432861328,
+          "speedup": 1.5887018318126775,
+          "paired_round_speedups": [
+            1.640045606992742,
+            0.8891907179298714,
+            0.5990396769523352,
+            2.0994242421154423,
+            1.500762768031156,
+            1.5887018318126775,
+            2.0671228483177577
+          ],
+          "paired_speedup_range": [
+            0.5990396769523352,
+            2.0994242421154423
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            660,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031425754556783816,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005594968795776367,
+              "relative_l2": 0.001964002233897704,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 3403.0593872070312,
+          "fused_us": 2105.855941772461,
+          "speedup": 1.615998188528859,
+          "paired_round_speedups": [
+            2.174118107090746,
+            0.7813357893375412,
+            0.826701123737915,
+            2.026536448392888,
+            2.1520200764465396,
+            1.615998188528859,
+            1.3752189369771324
+          ],
+          "paired_speedup_range": [
+            0.7813357893375412,
+            2.174118107090746
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            750,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031425754556783816,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005594968795776367,
+              "relative_l2": 0.001964002233897704,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t65_fixed",
+        "lengths": [
+          65
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 283.28959941864014,
+          "fused_us": 164.60800170898438,
+          "speedup": 1.7209953129707307,
+          "paired_round_speedups": [
+            1.98513635738447,
+            1.6649684984398183,
+            1.6832977771368107,
+            1.664129491945134,
+            1.7320820129663625,
+            1.7589424347060323,
+            1.7126046322844033
+          ],
+          "paired_speedup_range": [
+            1.664129491945134,
+            1.98513635738447
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.001679517474391481,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005197882652282715,
+              "relative_l2": 0.001194005799632516,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 287.02080249786377,
+          "fused_us": 163.27680349349976,
+          "speedup": 1.7578786230298196,
+          "paired_round_speedups": [
+            1.9834534081321065,
+            1.7447293043805634,
+            1.7651300306914441,
+            1.7650740248970442,
+            1.6270254240334803,
+            1.7439554246943683,
+            1.7397684397157993
+          ],
+          "paired_speedup_range": [
+            1.6270254240334803,
+            1.9834534081321065
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.001679517474391481,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005197882652282715,
+              "relative_l2": 0.001194005799632516,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t65_fixed",
+        "lengths": [
+          65
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 23.500800132751465,
+          "fused_us": 23.347200453281403,
+          "speedup": 1.0065789335118538,
+          "paired_round_speedups": [
+            1.0328296963459853,
+            0.9151138297181315,
+            0.9285714329387502,
+            1.0311111545153429,
+            0.9168399484142163,
+            1.0177383652113847,
+            1.0285087331594294
+          ],
+          "paired_speedup_range": [
+            0.9151138297181315,
+            1.0328296963459853
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.001679517474391481,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005197882652282715,
+              "relative_l2": 0.001194005799632516,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 22.118400037288666,
+          "fused_us": 22.271999716758728,
+          "speedup": 0.9931034625797662,
+          "paired_round_speedups": [
+            1.045977027643822,
+            0.9104803657169582,
+            0.9237668214107357,
+            1.0352112613510913,
+            0.9188596072731747,
+            1.0117096231033436,
+            1.0302325863146882
+          ],
+          "paired_speedup_range": [
+            0.9104803657169582,
+            1.045977027643822
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.001679517474391481,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005197882652282715,
+              "relative_l2": 0.001194005799632516,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t65_fixed",
+        "lengths": [
+          65
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 446.3103771209717,
+          "fused_us": 416.30239486694336,
+          "speedup": 1.0720821754187106,
+          "paired_round_speedups": [
+            1.1418868144884509,
+            1.1909041380417105,
+            1.0932439918871977,
+            1.1046203616504249,
+            1.10748189111261,
+            1.0720821754187106,
+            1.1298960020033357
+          ],
+          "paired_speedup_range": [
+            1.0720821754187106,
+            1.1909041380417105
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.001679517474391481,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005197882652282715,
+              "relative_l2": 0.001194005799632516,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 870.6048011779785,
+          "fused_us": 759.500789642334,
+          "speedup": 1.146285577382962,
+          "paired_round_speedups": [
+            1.0670522236582658,
+            1.201766260758019,
+            1.1045267131161134,
+            1.1299467060521484,
+            1.1230129614841207,
+            1.1019357748011411,
+            1.1236370875998951
+          ],
+          "paired_speedup_range": [
+            1.0670522236582658,
+            1.201766260758019
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.001679517474391481,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005197882652282715,
+              "relative_l2": 0.001194005799632516,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t65_fixed",
+        "lengths": [
+          65
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 56.93439841270447,
+          "fused_us": 59.84640121459961,
+          "speedup": 0.9513420566183559,
+          "paired_round_speedups": [
+            0.9852430447658329,
+            0.9904181469986801,
+            0.9860869521204038,
+            0.9478130701873202,
+            0.9471440680834137,
+            0.944774826358684,
+            0.9477116971202098
+          ],
+          "paired_speedup_range": [
+            0.944774826358684,
+            0.9904181469986801
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.001679517474391481,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005197882652282715,
+              "relative_l2": 0.001194005799632516,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 53.043198585510254,
+          "fused_us": 55.85920214653015,
+          "speedup": 0.9495874725594372,
+          "paired_round_speedups": [
+            0.9897673642922273,
+            0.9906802647282196,
+            0.9887955416519019,
+            0.9408549973062844,
+            0.9461187342772862,
+            0.9443430649181142,
+            0.9431713986665484
+          ],
+          "paired_speedup_range": [
+            0.9408549973062844,
+            0.9906802647282196
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.00048828125,
+              "relative_l2": 0.001679517474391481,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005197882652282715,
+              "relative_l2": 0.001194005799632516,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t8192_fixed",
+        "lengths": [
+          8192
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 692.4287796020508,
+          "fused_us": 411.54561042785645,
+          "speedup": 1.6825079943925993,
+          "paired_round_speedups": [
+            1.6461672012149202,
+            1.6963973403831447,
+            1.7108159128098268,
+            1.6975459917270102,
+            1.641310972328319,
+            1.6367292485352325,
+            1.710131098732512
+          ],
+          "paired_speedup_range": [
+            1.6367292485352325,
+            1.7108159128098268
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031763076590793347,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005532413721084595,
+              "relative_l2": 0.001975151561409214,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 664.5232200622559,
+          "fused_us": 390.29760360717773,
+          "speedup": 1.7026064570231838,
+          "paired_round_speedups": [
+            1.6722678656954482,
+            1.7120515577438054,
+            1.7270750275431055,
+            1.7473153790027933,
+            1.6469763264871575,
+            1.6728538773141668,
+            1.7292322886833618
+          ],
+          "paired_speedup_range": [
+            1.6469763264871575,
+            1.7473153790027933
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1620,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031763076590793347,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005532413721084595,
+              "relative_l2": 0.001975151561409214,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t8192_fixed",
+        "lengths": [
+          8192
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 679.3216228485107,
+          "fused_us": 400.1279830932617,
+          "speedup": 1.6977608454097415,
+          "paired_round_speedups": [
+            1.6979007449984627,
+            1.698640447740348,
+            1.6997823118464028,
+            1.6914540226007277,
+            1.6992828768325872,
+            1.6890702334304526,
+            1.6971903792350498
+          ],
+          "paired_speedup_range": [
+            1.6890702334304526,
+            1.6997823118464028
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031763076590793347,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005532413721084595,
+              "relative_l2": 0.001975151561409214,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 653.2608032226562,
+          "fused_us": 382.259202003479,
+          "speedup": 1.708947226904719,
+          "paired_round_speedups": [
+            1.71372962060074,
+            1.7162634336086535,
+            1.708947226904719,
+            1.7037185881070258,
+            1.7167653983077047,
+            1.6945465222994882,
+            1.71530199892651
+          ],
+          "paired_speedup_range": [
+            1.6945465222994882,
+            1.7167653983077047
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1425,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031763076590793347,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005532413721084595,
+              "relative_l2": 0.001975151561409214,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t8192_fixed",
+        "lengths": [
+          8192
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 2750.105667114258,
+          "fused_us": 3090.3791427612305,
+          "speedup": 0.8898926442588722,
+          "paired_round_speedups": [
+            1.7642107420207123,
+            1.9324056135754684,
+            0.812757048866332,
+            0.8905413205185574,
+            0.9095417265263043,
+            0.7855523814126824,
+            0.7895941543732942
+          ],
+          "paired_speedup_range": [
+            0.7855523814126824,
+            1.9324056135754684
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            600,
+            1965
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031763076590793347,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005532413721084595,
+              "relative_l2": 0.001975151561409214,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 3000.7808685302734,
+          "fused_us": 3036.9279861450195,
+          "speedup": 0.9880974729135312,
+          "paired_round_speedups": [
+            1.9015048855625039,
+            1.2611203758819522,
+            1.2049782135771654,
+            0.9828612660339257,
+            0.983242003061251,
+            0.9516578400858984,
+            0.930011065182174
+          ],
+          "paired_speedup_range": [
+            0.930011065182174,
+            1.9015048855625039
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1545,
+            1935
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031763076590793347,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005532413721084595,
+              "relative_l2": 0.001975151561409214,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n1_t8192_fixed",
+        "lengths": [
+          8192
+        ],
+        "packed": false,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 3714.9185180664062,
+          "fused_us": 2093.516731262207,
+          "speedup": 1.7744871405095655,
+          "paired_round_speedups": [
+            2.0144679926043114,
+            1.7476482370234674,
+            0.8637744196327611,
+            1.8297333502675954,
+            1.8596535786708177,
+            1.768348506207648,
+            0.8606540384341789
+          ],
+          "paired_speedup_range": [
+            0.8606540384341789,
+            2.0144679926043114
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            510,
+            1725
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031763076590793347,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005532413721084595,
+              "relative_l2": 0.001975151561409214,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 3464.0384674072266,
+          "fused_us": 2576.793670654297,
+          "speedup": 1.344321241881831,
+          "paired_round_speedups": [
+            1.344321241881831,
+            1.7684992072272463,
+            1.026748008557174,
+            1.2345268278116963,
+            1.5870767459279418,
+            1.9557409539526873,
+            1.000202568755458
+          ],
+          "paired_speedup_range": [
+            1.000202568755458,
+            1.9557409539526873
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            810,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031763076590793347,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005532413721084595,
+              "relative_l2": 0.001975151561409214,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h8_16_n1_t2048_fixed",
+        "lengths": [
+          2048
+        ],
+        "packed": false,
+        "hq": 8,
+        "hv": 16,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 142.18239784240723,
+          "fused_us": 89.6511971950531,
+          "speedup": 1.5859509107621015,
+          "paired_round_speedups": [
+            1.5859509107621015,
+            1.7356901856710694,
+            1.5016916135163199,
+            1.9308399312286944,
+            1.7097568634169984,
+            1.7571850996766565,
+            1.5578817114256331
+          ],
+          "paired_speedup_range": [
+            1.5016916135163199,
+            1.9308399312286944
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031394383299424905,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005871415138244629,
+              "relative_l2": 0.001964205497810249,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 140.49279689788818,
+          "fused_us": 88.6784017086029,
+          "speedup": 1.584295546502375,
+          "paired_round_speedups": [
+            1.6016165597969103,
+            1.6849152274082055,
+            1.604214155135351,
+            1.9640235630763765,
+            1.5781970039330697,
+            1.435664202890821,
+            1.597205978136688
+          ],
+          "paired_speedup_range": [
+            1.435664202890821,
+            1.9640235630763765
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031394890631207674,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005871415138244629,
+              "relative_l2": 0.001964220724610616,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h8_16_n1_t2048_fixed",
+        "lengths": [
+          2048
+        ],
+        "packed": false,
+        "hq": 8,
+        "hv": 16,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 98.81600141525269,
+          "fused_us": 65.63199758529663,
+          "speedup": 1.505607097922465,
+          "paired_round_speedups": [
+            1.4780937416250988,
+            1.5212091809610233,
+            1.4691833483037937,
+            1.5113548246176207,
+            1.5172412817837309,
+            1.4689178691261302,
+            1.5144871900293781
+          ],
+          "paired_speedup_range": [
+            1.4689178691261302,
+            1.5212091809610233
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031394383299424905,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005871415138244629,
+              "relative_l2": 0.001964205497810249,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 73.77920150756836,
+          "fused_us": 62.25919723510742,
+          "speedup": 1.1850329715778107,
+          "paired_round_speedups": [
+            1.1482071855060978,
+            1.1983470756327246,
+            1.15198062743624,
+            1.1965461219144193,
+            1.191499739819932,
+            1.159220231035721,
+            1.188274141446632
+          ],
+          "paired_speedup_range": [
+            1.1482071855060978,
+            1.1983470756327246
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031394890631207674,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005871415138244629,
+              "relative_l2": 0.001964220724610616,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h8_16_n1_t2048_fixed",
+        "lengths": [
+          2048
+        ],
+        "packed": false,
+        "hq": 8,
+        "hv": 16,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 702.0031929016113,
+          "fused_us": 515.7375812530518,
+          "speedup": 1.361163542117685,
+          "paired_round_speedups": [
+            1.2873939035935642,
+            1.1261653935923115,
+            1.2095117979735082,
+            1.2173725552281627,
+            1.2101803639395017,
+            1.1409782731284277,
+            1.361163542117685
+          ],
+          "paired_speedup_range": [
+            1.1261653935923115,
+            1.361163542117685
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031394383299424905,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005871415138244629,
+              "relative_l2": 0.001964205497810249,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 840.447998046875,
+          "fused_us": 494.43840980529785,
+          "speedup": 1.699803213868094,
+          "paired_round_speedups": [
+            1.542818608127494,
+            1.086243924946709,
+            1.1794195269976844,
+            1.701940092154329,
+            1.2449645812758363,
+            1.109003173381916,
+            1.2096218880350482
+          ],
+          "paired_speedup_range": [
+            1.086243924946709,
+            1.701940092154329
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031394890631207674,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005871415138244629,
+              "relative_l2": 0.001964220724610616,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h8_16_n1_t2048_fixed",
+        "lengths": [
+          2048
+        ],
+        "packed": false,
+        "hq": 8,
+        "hv": 16,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 302.2847890853882,
+          "fused_us": 271.9696044921875,
+          "speedup": 1.1114653405839383,
+          "paired_round_speedups": [
+            1.120995146099696,
+            1.1114653405839383,
+            1.109712620576141,
+            1.1079983431100628,
+            1.1084790272083103,
+            1.1174806416448881,
+            1.1156681161338655
+          ],
+          "paired_speedup_range": [
+            1.1079983431100628,
+            1.120995146099696
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031394383299424905,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005871415138244629,
+              "relative_l2": 0.001964205497810249,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 270.8479881286621,
+          "fused_us": 262.9631996154785,
+          "speedup": 1.0299843800376374,
+          "paired_round_speedups": [
+            1.0350535474184184,
+            1.028816237507566,
+            1.0291886003502382,
+            1.0299843800376374,
+            1.0285492249393686,
+            1.0340308871953985,
+            1.0369285424628425
+          ],
+          "paired_speedup_range": [
+            1.0285492249393686,
+            1.0369285424628425
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031394890631207674,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005871415138244629,
+              "relative_l2": 0.001964220724610616,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h8_16_n1_t8192_fixed",
+        "lengths": [
+          8192
+        ],
+        "packed": false,
+        "hq": 8,
+        "hv": 16,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 350.2592086791992,
+          "fused_us": 224.4607925415039,
+          "speedup": 1.5604471708101741,
+          "paired_round_speedups": [
+            1.517563949827544,
+            1.6324705488426072,
+            1.5088430129870343,
+            1.5069914370466502,
+            1.6045211578004726,
+            1.6237669296298072,
+            1.5104236202266719
+          ],
+          "paired_speedup_range": [
+            1.5069914370466502,
+            1.6324705488426072
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031796694561633154,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005294337868690491,
+              "relative_l2": 0.001959562066550156,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 276.1728048324585,
+          "fused_us": 214.11840915679932,
+          "speedup": 1.2898134537802242,
+          "paired_round_speedups": [
+            1.2483334037368876,
+            1.3451071634388356,
+            1.2487414107583648,
+            1.3145291797445158,
+            1.3377976530763327,
+            1.446813684145796,
+            1.255141064074968
+          ],
+          "paired_speedup_range": [
+            1.2483334037368876,
+            1.446813684145796
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031798296758786555,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005294337868690491,
+              "relative_l2": 0.00195939651584178,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h8_16_n1_t8192_fixed",
+        "lengths": [
+          8192
+        ],
+        "packed": false,
+        "hq": 8,
+        "hv": 16,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 335.8720064163208,
+          "fused_us": 212.99200057983398,
+          "speedup": 1.5769231027548791,
+          "paired_round_speedups": [
+            1.5833934322149057,
+            1.5786057519019354,
+            1.564095823158748,
+            1.5678331861120431,
+            1.577302353140342,
+            1.5795809833492178,
+            1.5769231027548791
+          ],
+          "paired_speedup_range": [
+            1.564095823158748,
+            1.5833934322149057
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031796694561633154,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005294337868690491,
+              "relative_l2": 0.001959562066550156,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 263.8848066329956,
+          "fused_us": 202.08640098571777,
+          "speedup": 1.305801901294909,
+          "paired_round_speedups": [
+            1.311405415333209,
+            1.305801901294909,
+            1.2913622943133976,
+            1.2918238785939677,
+            1.3055484833977065,
+            1.3076534375269206,
+            1.3071504890150987
+          ],
+          "paired_speedup_range": [
+            1.2913622943133976,
+            1.311405415333209
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031798296758786555,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005294337868690491,
+              "relative_l2": 0.00195939651584178,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h8_16_n1_t8192_fixed",
+        "lengths": [
+          8192
+        ],
+        "packed": false,
+        "hq": 8,
+        "hv": 16,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 1585.1519584655762,
+          "fused_us": 1062.1439933776855,
+          "speedup": 1.4924077793112513,
+          "paired_round_speedups": [
+            1.5200873319428112,
+            1.4860323523050927,
+            1.5385996115640714,
+            1.3297662189524346,
+            1.4661660707062885,
+            0.8477931696819847,
+            1.7011576793364276
+          ],
+          "paired_speedup_range": [
+            0.8477931696819847,
+            1.7011576793364276
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            675,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031796694561633154,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005294337868690491,
+              "relative_l2": 0.001959562066550156,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 1430.4256439208984,
+          "fused_us": 1034.39359664917,
+          "speedup": 1.38286397803954,
+          "paired_round_speedups": [
+            1.3317126897194047,
+            1.6183339855827974,
+            1.6582061259309138,
+            1.301609948658269,
+            1.3792862336535112,
+            0.849755555119572,
+            1.5953076794214636
+          ],
+          "paired_speedup_range": [
+            0.849755555119572,
+            1.6582061259309138
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1140,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031798296758786555,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005294337868690491,
+              "relative_l2": 0.00195939651584178,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h8_16_n1_t8192_fixed",
+        "lengths": [
+          8192
+        ],
+        "packed": false,
+        "hq": 8,
+        "hv": 16,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 1152.1023750305176,
+          "fused_us": 1498.6751556396484,
+          "speedup": 0.768747230308752,
+          "paired_round_speedups": [
+            1.6296369335961527,
+            1.447116520525622,
+            0.7124944074055681,
+            0.7228531952655097,
+            0.7430546456196884,
+            0.7683031251916989,
+            1.584509932919402
+          ],
+          "paired_speedup_range": [
+            0.7124944074055681,
+            1.6296369335961527
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            735,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031796694561633154,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005294337868690491,
+              "relative_l2": 0.001959562066550156,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 1064.1375541687012,
+          "fused_us": 1324.185562133789,
+          "speedup": 0.8036166415029875,
+          "paired_round_speedups": [
+            1.2966452832150637,
+            1.3267879889610699,
+            0.6346762703090202,
+            0.6688681554440308,
+            0.8003325437094692,
+            0.7974814451747949,
+            1.5158661562566211
+          ],
+          "paired_speedup_range": [
+            0.6346762703090202,
+            1.5158661562566211
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1680,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031798296758786555,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005294337868690491,
+              "relative_l2": 0.00195939651584178,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t2257_packed",
+        "lengths": [
+          17,
+          63,
+          129,
+          2048
+        ],
+        "packed": true,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 297.0112085342407,
+          "fused_us": 154.31679487228394,
+          "speedup": 1.924684923504625,
+          "paired_round_speedups": [
+            1.266539917087503,
+            1.7265400668439772,
+            1.2513162000274265,
+            1.774091534864169,
+            1.4084242662945112,
+            1.667433243223835,
+            1.9455873068206635
+          ],
+          "paired_speedup_range": [
+            1.2513162000274265,
+            1.9455873068206635
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0030961798529837597,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0055162012577056885,
+              "relative_l2": 0.0015617498452030576,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 196.55200242996216,
+          "fused_us": 149.24479722976685,
+          "speedup": 1.3169772486431433,
+          "paired_round_speedups": [
+            1.9168546269442446,
+            1.6783079148438316,
+            1.3242946016565529,
+            1.514835625666564,
+            1.5136849645438935,
+            1.7197477781895578,
+            1.3169772486431433
+          ],
+          "paired_speedup_range": [
+            1.3169772486431433,
+            1.9168546269442446
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0030961907009567744,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0055162012577056885,
+              "relative_l2": 0.0015615306882677882,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t2257_packed",
+        "lengths": [
+          17,
+          63,
+          129,
+          2048
+        ],
+        "packed": true,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 150.57920217514038,
+          "fused_us": 129.9456000328064,
+          "speedup": 1.158786462466792,
+          "paired_round_speedups": [
+            1.1807324673986126,
+            1.1768219368560706,
+            1.1650832000886342,
+            1.15559920634485,
+            1.1560283642399654,
+            1.156816392304773,
+            1.153846132758969
+          ],
+          "paired_speedup_range": [
+            1.153846132758969,
+            1.1807324673986126
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0030961798529837597,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0055162012577056885,
+              "relative_l2": 0.0015617498452030576,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 177.510404586792,
+          "fused_us": 123.64799976348877,
+          "speedup": 1.4356108058871155,
+          "paired_round_speedups": [
+            1.4571667031366557,
+            1.4577051634777254,
+            1.4414078550792655,
+            1.4177631982047532,
+            1.4345114661108935,
+            1.4319774026103138,
+            1.4302805272999206
+          ],
+          "paired_speedup_range": [
+            1.4177631982047532,
+            1.4577051634777254
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0030961907009567744,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0055162012577056885,
+              "relative_l2": 0.0015615306882677882,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t2257_packed",
+        "lengths": [
+          17,
+          63,
+          129,
+          2048
+        ],
+        "packed": true,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 736.0000133514404,
+          "fused_us": 793.3440208435059,
+          "speedup": 0.9277186113647197,
+          "paired_round_speedups": [
+            0.7483861373733832,
+            1.1249435165946111,
+            1.0210449788365499,
+            1.0845442437844544,
+            1.0169202350439075,
+            1.0955910001740332,
+            1.086514174456063
+          ],
+          "paired_speedup_range": [
+            0.7483861373733832,
+            1.1249435165946111
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1530,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0030961798529837597,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0055162012577056885,
+              "relative_l2": 0.0015617498452030576,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 903.5264015197754,
+          "fused_us": 803.1744003295898,
+          "speedup": 1.1249442227603434,
+          "paired_round_speedups": [
+            0.986004556513627,
+            1.0835054388751946,
+            1.1113321848257662,
+            1.0786042473637725,
+            1.1238174400722678,
+            0.9757940769833388,
+            1.1249442227603434
+          ],
+          "paired_speedup_range": [
+            0.9757940769833388,
+            1.1249442227603434
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0030961907009567744,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0055162012577056885,
+              "relative_l2": 0.0015615306882677882,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t2257_packed",
+        "lengths": [
+          17,
+          63,
+          129,
+          2048
+        ],
+        "packed": true,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 555.5200099945068,
+          "fused_us": 540.1088237762451,
+          "speedup": 1.02853348351266,
+          "paired_round_speedups": [
+            1.0309033281206699,
+            1.0242678823395985,
+            1.0255217725807504,
+            1.0239764366215234,
+            1.0277541548262747,
+            1.034879368407133,
+            1.0317008552327316
+          ],
+          "paired_speedup_range": [
+            1.0239764366215234,
+            1.034879368407133
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0030961798529837597,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0055162012577056885,
+              "relative_l2": 0.0015617498452030576,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 594.9952125549316,
+          "fused_us": 543.5904026031494,
+          "speedup": 1.0945653376248266,
+          "paired_round_speedups": [
+            1.0920631684356452,
+            1.1207337311097232,
+            1.1059898426058665,
+            1.0815470543560812,
+            1.0945653376248266,
+            1.0995826483974147,
+            1.0818582594498891
+          ],
+          "paired_speedup_range": [
+            1.0815470543560812,
+            1.1207337311097232
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1800,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0030961907009567744,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0055162012577056885,
+              "relative_l2": 0.0015615306882677882,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t7424_packed",
+        "lengths": [
+          256,
+          1023,
+          2048,
+          4097
+        ],
+        "packed": true,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 508.2079887390137,
+          "fused_us": 389.734411239624,
+          "speedup": 1.3039854169473053,
+          "paired_round_speedups": [
+            1.2979505398232762,
+            1.2861574373305793,
+            1.3712864076044196,
+            1.2949218543942602,
+            1.3015915895195067,
+            1.3085958511213283,
+            1.3062327743209239
+          ],
+          "paired_speedup_range": [
+            1.2861574373305793,
+            1.3712864076044196
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1695,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.003140551109478241,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005761981010437012,
+              "relative_l2": 0.0019527701126896507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 597.5552082061768,
+          "fused_us": 374.2208003997803,
+          "speedup": 1.5967984878654746,
+          "paired_round_speedups": [
+            1.6176716766854693,
+            1.5924815554177838,
+            1.683521112885871,
+            1.5701790286234116,
+            1.5967984878654746,
+            1.5993709739874082,
+            1.5967941555399168
+          ],
+          "paired_speedup_range": [
+            1.5701790286234116,
+            1.683521112885871
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1785,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031405077856984866,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005761981010437012,
+              "relative_l2": 0.0019529159441335408,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t7424_packed",
+        "lengths": [
+          256,
+          1023,
+          2048,
+          4097
+        ],
+        "packed": true,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "kkt_solve",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 500.0192165374756,
+          "fused_us": 371.66080474853516,
+          "speedup": 1.3453644025653646,
+          "paired_round_speedups": [
+            1.3463341141631306,
+            1.3459154468423815,
+            1.3455959594857725,
+            1.3443167889000887,
+            1.34668045089849,
+            1.3366295664035188,
+            1.342980656389101
+          ],
+          "paired_speedup_range": [
+            1.3366295664035188,
+            1.34668045089849
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1560,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.003140551109478241,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005761981010437012,
+              "relative_l2": 0.0019527701126896507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 589.4144058227539,
+          "fused_us": 354.40640449523926,
+          "speedup": 1.6631031447138296,
+          "paired_round_speedups": [
+            1.6628661966729108,
+            1.6626680635832607,
+            1.6623275367775538,
+            1.6567806287050528,
+            1.6650274904493638,
+            1.6541396517188836,
+            1.6633920134717517
+          ],
+          "paired_speedup_range": [
+            1.6541396517188836,
+            1.6650274904493638
+          ],
+          "rounds_include_both_speedup_and_slowdown": false,
+          "clock_sm_mhz_range": [
+            1740,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031405077856984866,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005761981010437012,
+              "relative_l2": 0.0019529159441335408,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t7424_packed",
+        "lengths": [
+          256,
+          1023,
+          2048,
+          4097
+        ],
+        "packed": true,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "eager",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 2718.822479248047,
+          "fused_us": 3196.5696334838867,
+          "speedup": 0.8505437988174994,
+          "paired_round_speedups": [
+            0.7889620000972958,
+            0.6482731439355348,
+            0.8505437988174994,
+            1.5415139393241104,
+            0.5896548366465332,
+            0.8838843122007445,
+            1.9800000317917135
+          ],
+          "paired_speedup_range": [
+            0.5896548366465332,
+            1.9800000317917135
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            585,
+            1710
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.003140551109478241,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005761981010437012,
+              "relative_l2": 0.0019527701126896507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 2756.710433959961,
+          "fused_us": 2808.1151962280273,
+          "speedup": 0.9816942117128544,
+          "paired_round_speedups": [
+            0.6949586969981241,
+            0.9767895789680241,
+            0.9775591130619319,
+            1.8285425374728135,
+            1.006149094788943,
+            0.7131437738715207,
+            1.533782216248226
+          ],
+          "paired_speedup_range": [
+            0.6949586969981241,
+            1.8285425374728135
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            675,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031405077856984866,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005761981010437012,
+              "relative_l2": 0.0019529159441335408,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "h16_32_n4_t7424_packed",
+        "lengths": [
+          256,
+          1023,
+          2048,
+          4097
+        ],
+        "packed": true,
+        "hq": 16,
+        "hv": 32,
+        "initial": "random",
+        "gate": 0.01
+      },
+      "region": "full_gdn",
+      "mode": "cuda_graph",
+      "devices": {
+        "gpu0": {
+          "baseline_us": 2826.598358154297,
+          "fused_us": 3163.0847930908203,
+          "speedup": 0.8936207983827951,
+          "paired_round_speedups": [
+            0.9251500913998358,
+            1.5268455841147397,
+            2.123491283227149,
+            0.8705551352387938,
+            0.7985354883379723,
+            0.6483166826368559,
+            0.8936207983827951
+          ],
+          "paired_speedup_range": [
+            0.6483166826368559,
+            2.123491283227149
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            690,
+            1695
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.003140551109478241,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005761981010437012,
+              "relative_l2": 0.0019527701126896507,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        },
+        "gpu1": {
+          "baseline_us": 2532.1983337402344,
+          "fused_us": 2839.449691772461,
+          "speedup": 0.8917919345700991,
+          "paired_round_speedups": [
+            0.8970651751451276,
+            1.737748701245619,
+            1.936754470741802,
+            0.6716791984478891,
+            0.9396299859460274,
+            0.7028890091250061,
+            0.741482423894638
+          ],
+          "paired_speedup_range": [
+            0.6716791984478891,
+            1.936754470741802
+          ],
+          "rounds_include_both_speedup_and_slowdown": true,
+          "clock_sm_mhz_range": [
+            1380,
+            1800
+          ],
+          "parity": {
+            "output": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.0009765625,
+              "relative_l2": 0.0031405077856984866,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            },
+            "state": {
+              "passed": true,
+              "finite": true,
+              "max_abs": 0.005761981010437012,
+              "relative_l2": 0.0019529159441335408,
+              "max_abs_limit": 0.02,
+              "relative_l2_limit": 0.01
+            }
+          }
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Single-GPU operator benchmark; TP shapes are per-rank equivalents, not distributed runs",
+    "Synthetic BF16 inputs, normalized q/k; no model-level throughput or accuracy claim",
+    "Graph mode is an isolated captured operator, not proof vLLM captures this path",
+    "Eager CUDA-event timelines can include GPU idle gaps caused by host submission",
+    "No cache flushing or clock locking; randomized paired rounds and telemetry recorded",
+    "Two GPUs run independent operator replicas, not a distributed model",
+    "Both replicas share the host; eager submission timing may be affected by concurrent CPU activity",
+    "Model config determines geometry only; weights and model activations are not loaded",
+    "Candidate changes KKT arithmetic as well as launch fusion; speedup cannot be assigned solely to fusion"
+  ]
+}

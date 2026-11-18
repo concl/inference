@@ -102,3 +102,9 @@ Each README lists any further barriers to exact historical replication.
 
 The older `exp1`–`exp4` benchmark metrics are preserved in each tracked
 `summary.json`; their original raw JSON and logs live under ignored `artifacts/`.
+
+## Kernel benchmarks
+
+| Experiment | Contents |
+|---|---|
+| [gdn_fused_kkt_solve](gdn_fused_kkt_solve/README.md) | Qwen3.5-4B-shaped upstream FLA KKT/solve fusion on two RTX 3090s; reference checks pass, shape-dependent gains/regressions and unstable long-shape timings recorded |

@@ -1,0 +1,27 @@
+--- baseline_forward
++++ fused_forward
+@@ -1,4 +1,4 @@
+-def chunk_gated_delta_rule_fwd(
++def full_fused(
+     q: torch.Tensor,
+     k: torch.Tensor,
+     v: torch.Tensor,
+@@ -16,16 +16,8 @@
+         g, chunk_size=FLA_CHUNK_SIZE, cu_seqlens=cu_seqlens, chunk_indices=chunk_indices
+     )
+     # obtain WY representation. u is actually the new v.
+-    A = chunk_scaled_dot_kkt_fwd(
+-        k=k,
+-        beta=beta,
+-        g=g,
+-        cu_seqlens=cu_seqlens,
+-        chunk_indices=chunk_indices,
+-        output_dtype=torch.float32,
+-    )
+-    A = solve_tril(
+-        A=A, cu_seqlens=cu_seqlens, chunk_indices=chunk_indices, output_dtype=k.dtype
++    A = fused_kkt_solve(
++        k=k, beta=beta, g=g, cu_seqlens=cu_seqlens, chunk_indices=chunk_indices
+     )
+     w, u = recompute_w_u_fwd(
+         k=k,
