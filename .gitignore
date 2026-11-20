@@ -226,3 +226,5 @@ experiments/results/
 
 # Raw profiling data, logs, source/config snapshots, and generated IR.
 /experiments/**/artifacts/
+
+/experiments/vllm/

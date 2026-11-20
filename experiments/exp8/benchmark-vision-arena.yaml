@@ -1,0 +1,22 @@
+# run.py supplies concurrency and fresh per-trial result paths.
+backend: openai-chat
+base-url: http://127.0.0.1:8000
+endpoint: /v1/chat/completions
+model: Qwen3.8-27B
+tokenizer: Qwen/Qwen3.8-27B
+dataset-name: hf
+dataset-path: lmarena-ai/vision-arena-bench-v0.1
+hf-split: train
+hf-output-len: 128
+# Load/cache the HF dataset before sampling; responses still use token streaming.
+no-stream: true
+no-oversample: true
+num-prompts: 100
+max-concurrency: 2
+request-rate: inf
+seed: 42
+percentile-metrics: ttft,tpot,itl
+metric-percentiles: 50,95
+save-result: true
+result-dir: experiments/exp5/artifacts/manual
+result-filename: bench-vision-arena.json
