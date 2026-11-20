@@ -1,0 +1,20 @@
+# Base workload; replication commands override concurrency and result filename.
+backend: openai-chat
+base-url: http://127.0.0.1:8134
+endpoint: /v1/chat/completions
+model: Qwen3-VL-4B-Instruct
+tokenizer: Qwen/Qwen3-VL-4B-Instruct
+dataset-name: hf
+dataset-path: lmarena-ai/vision-arena-bench-v0.1
+hf-split: train
+hf-output-len: 64
+enable-multimodal-chat: true
+num-prompts: 100
+max-concurrency: 1
+seed: 42
+temperature: 0
+percentile-metrics: ttft,itl,tpot
+metric-percentiles: 50,95
+save-result: true
+result-dir: experiments/exp6/artifacts/bench
+result-filename: vision.json
