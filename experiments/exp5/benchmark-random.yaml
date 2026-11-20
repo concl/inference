@@ -1,0 +1,17 @@
+# Recorded workload; result paths may be overridden for a new replication.
+backend: openai-chat
+base-url: http://127.0.0.1:8000
+endpoint: /v1/chat/completions
+model: Qwen3.8-27B
+tokenizer: Qwen/Qwen3.8-27B
+dataset-name: random
+random-input-len: 1024
+random-output-len: 128
+num-prompts: 20
+max-concurrency: 2
+seed: 0
+percentile-metrics: ttft,tpot,itl
+metric-percentiles: 50,95
+save-result: true
+result-dir: experiments/exp1/artifacts/bench
+result-filename: bench-random.json
