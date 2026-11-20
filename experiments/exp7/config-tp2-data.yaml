@@ -1,0 +1,14 @@
+# Replication config. The historical run used a local copy of this model.
+model: Qwen/Qwen3.8-27B-FP8
+revision: c3a462cc3d38cf351f3b26cbd763469eeb74ef81
+tokenizer-revision: c3a462cc3d38cf351f3b26cbd763469eeb74ef81
+served-model-name: Qwen3.8-27B-FP8
+tensor-parallel-size: 2
+mm-encoder-tp-mode: data
+dtype: bfloat16
+max-model-len: 8192
+max-num-seqs: 8
+gpu-memory-utilization: 0.90
+enable-prefix-caching: false
+host: 127.0.0.1
+port: 8134
