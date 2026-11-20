@@ -1,0 +1,29 @@
+# exp5 -- BF16 scheduler sweep on three local GPUs.
+# Model derived from exp1; workload is Vision Arena text plus one image.
+model: Qwen/Qwen3.8-27B
+served-model-name: Qwen3.8-27B
+
+tensor-parallel-size: 1
+pipeline-parallel-size: 3
+data-parallel-size: 1
+distributed-executor-backend: mp
+dtype: bfloat16
+gpu-memory-utilization: 0.95
+max-model-len: 65536
+# Defaults for manual serving; run.py overrides these for each trial.
+max-num-seqs: 32
+max-num-batched-tokens: 4096
+enable-chunked-prefill: true
+
+host: 127.0.0.1
+port: 8000
+reasoning-parser: qwen3
+tool-call-parser: qwen3_xml
+enable-auto-tool-choice: true
+enable-prefix-caching: true
+disable-custom-all-reduce: true
+
+# Vision Arena v0.1 contains one image per request and no video inputs.
+limit-mm-per-prompt:
+  image: 1
+  video: 0
