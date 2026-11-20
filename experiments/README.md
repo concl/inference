@@ -89,6 +89,7 @@ Each README lists any further barriers to exact historical replication.
 | [exp2](exp2/README.md) | INT8 W8A16 with MTP |
 | [exp3](exp3/README.md) | BF16 with prefix caching enabled and a larger context limit |
 | [exp4](exp4/README.md) | BF16 with the sequential GDN prefill kernel |
+| [exp6](exp6/README.md) | Qwen3-VL-4B TP=2 vision encoder `weights` versus `data` on VisionArena |
 
 ## Profiling captures
 
