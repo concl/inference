@@ -90,6 +90,7 @@ Each README lists any further barriers to exact historical replication.
 | [exp3](exp3/README.md) | BF16 with prefix caching enabled and a larger context limit |
 | [exp4](exp4/README.md) | BF16 with the sequential GDN prefill kernel |
 | [exp7](exp7/README.md) | Qwen3.8-27B-FP8 TP=2 versus TP=4 vision encoder `weights` versus `data` on VisionArena |
+| [exp6](exp6/README.md) | Qwen3-VL-4B TP=2 vision encoder `weights` versus `data` on VisionArena |
 
 ## Profiling captures
 

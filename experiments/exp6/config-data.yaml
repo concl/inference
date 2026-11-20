@@ -1,0 +1,12 @@
+# Replication config. The historical run used a local copy of this model.
+model: Qwen/Qwen3-VL-4B-Instruct
+served-model-name: Qwen3-VL-4B-Instruct
+tensor-parallel-size: 2
+mm-encoder-tp-mode: data
+dtype: bfloat16
+max-model-len: 8192
+max-num-seqs: 8
+gpu-memory-utilization: 0.90
+enable-prefix-caching: false
+host: 127.0.0.1
+port: 8134
