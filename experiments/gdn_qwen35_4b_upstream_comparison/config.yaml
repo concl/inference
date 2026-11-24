@@ -1,0 +1,38 @@
+# gdn_qwen35_4b_upstream_comparison -- Qwen3.5-4B TP=2 server config for unfused vs fused chunked GDN prefill.
+served-model-name: Qwen3.5-4B
+model: Qwen/Qwen3.5-4B
+tensor-parallel-size: 2
+max-model-len: 32768
+
+dtype: bfloat16
+gpu-memory-utilization: 0.90
+max-num-seqs: 32
+max-num-batched-tokens: 8192
+
+kv-cache-dtype: fp8_e4m3
+prefix-match-unit: 16
+
+host: 127.0.0.1
+port: 8001
+reasoning-parser: qwen3
+tool-call-parser: qwen3_coder
+enable-auto-tool-choice: true
+
+trust-remote-code: true
+
+# The 3090s here have no NVLink; disable custom all-reduce over PCIe.
+disable-custom-all-reduce: true
+
+no-enable-prefix-caching: true
+
+default-chat-template-kwargs:
+  enable_thinking: true
+  preserve_thinking: true
+
+override-generation-config:
+  temperature: 1.0
+  top_p: 0.95
+  top_k: 20
+  min_p: 0.0
+  repetition_penalty: 1.0
+  presence_penalty: 0.0
