@@ -1,0 +1,387 @@
+{
+  "experiment": "pd_disagg",
+  "status": "completed_adapted_replication",
+  "run_directory": "artifacts/replications/serrano-4b-20261127T230431Z",
+  "model": "axteam/Qwen3.5-4B-AWQ-4bit",
+  "revision": "ba968c07f40fa0bce733c2264d860d2fa671cfcf",
+  "gpu_indices": [
+    "0",
+    "1"
+  ],
+  "gpu_uuids": [
+    "GPU-67751770-3027-4921-76f0-658c833d2890",
+    "GPU-93760e38-5ff5-b135-10fe-1fbee2924fd7"
+  ],
+  "started_utc": "2026-11-27T23:04:31Z",
+  "ended_utc": "2026-11-27T23:17:43Z",
+  "adaptations": [
+    "Cached Qwen3.5-4B AWQ replaces unreadable Qwen3.8-27B AutoRound checkpoint",
+    "Reference proxy with explicit handoff validation replaces absent original proxy",
+    "No unknown no_mm_warmup overlay; native multimodal warmup remains enabled",
+    "Original chunked GDN module selected explicitly; educational sequential path bypassed",
+    "GPU memory utilization 0.70, image limit 1, video limit 0, compilation disabled"
+  ],
+  "versions": {
+    "vllm": "0.29.0",
+    "torch": "2.13.0",
+    "triton": "3.7.1",
+    "transformers": "5.17.0",
+    "nixl": "1.5.0",
+    "nixl-cu13": "1.5.0",
+    "datasets": "5.2.0",
+    "pandas": "3.1.1",
+    "pyarrow": "26.0.1",
+    "multiprocess": "0.70.19",
+    "xxhash": "4.1.0"
+  },
+  "classification": {
+    "runtime_disaggregation_verified": true,
+    "successful_transfers": 47,
+    "failed_transfers": 0,
+    "handoff_records": 47,
+    "bytes_transferred": 4099276800.0,
+    "mean_transfer_ms": 341.1252340425532
+  },
+  "text_correctness_checks": [
+    {
+      "prompt": 0,
+      "exact_output_match": true
+    },
+    {
+      "prompt": 1,
+      "exact_output_match": true
+    }
+  ],
+  "benchmarks": [
+    {
+      "label": "vision-baseline-r0",
+      "port": 8100,
+      "completed": 20,
+      "result_file": "vision-baseline-r0.json",
+      "profiled": false,
+      "output_throughput": 44.642855934762125,
+      "mean_ttft_ms": 455.62584760191385,
+      "p95_ttft_ms": 1812.8468635608444,
+      "p95_itl_ms": 43.4380590217188,
+      "total_input_tokens": 16990,
+      "total_output_tokens": 2397
+    },
+    {
+      "label": "vision-pd-r0",
+      "port": 8300,
+      "completed": 20,
+      "result_file": "vision-pd-r0.json",
+      "profiled": false,
+      "output_throughput": 42.22888514174658,
+      "mean_ttft_ms": 774.1826726909494,
+      "p95_ttft_ms": 1739.4787508383167,
+      "p95_itl_ms": 42.85628502257168,
+      "total_input_tokens": 16990,
+      "total_output_tokens": 2397
+    },
+    {
+      "label": "vision-baseline-r1",
+      "port": 8100,
+      "completed": 20,
+      "result_file": "vision-baseline-r1.json",
+      "profiled": false,
+      "output_throughput": 45.243248583375454,
+      "mean_ttft_ms": 324.6235133992741,
+      "p95_ttft_ms": 1654.9713870801497,
+      "p95_itl_ms": 43.49256658460945,
+      "total_input_tokens": 16990,
+      "total_output_tokens": 2397
+    },
+    {
+      "label": "vision-pd-r1",
+      "port": 8300,
+      "completed": 20,
+      "result_file": "vision-pd-r1.json",
+      "profiled": false,
+      "output_throughput": 42.03613934127896,
+      "mean_ttft_ms": 845.4950296523748,
+      "p95_ttft_ms": 2882.2466685058316,
+      "p95_itl_ms": 43.01641198107973,
+      "total_input_tokens": 16990,
+      "total_output_tokens": 2397
+    },
+    {
+      "label": "vision-trace",
+      "port": 8300,
+      "completed": 2,
+      "result_file": "vision-trace.json",
+      "profiled": true,
+      "output_throughput": 25.70512015322909,
+      "mean_ttft_ms": 923.8242970022839,
+      "p95_ttft_ms": 924.1573465027614,
+      "p95_itl_ms": 75.86259454546962,
+      "total_input_tokens": 1122,
+      "total_output_tokens": 256
+    }
+  ],
+  "traces": {
+    "prefill": [
+      {
+        "file": "rank0.1795821154115640107.pt.trace.json",
+        "gpu_kernel_count": 5238,
+        "event_count": 128303,
+        "top_kernel_summed_durations_ms": [
+          {
+            "name": "void marlin::Marlin<1125899906909960l, 1125899906843648l, 1125899906909960l, 1125899906909960l, 256, 4, 16, 4, false, 4, 2, false>(int4 const*, int4 const*, int4*, int4*, int4 const*, float const*, int4 const*, float const*, int4 const*, int const*, int, int, int, int, int, int*, bool, bool, bool, int)",
+            "summed_duration_ms": 234.93184300000004
+          },
+          {
+            "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+            "summed_duration_ms": 6.594318999999997
+          },
+          {
+            "name": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, 4, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithCast<1>, at::native::memory::StoreWithCast<1> >(int, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithCast<1>, at::native::memory::StoreWithCast<1>)",
+            "summed_duration_ms": 6.487845999999987
+          },
+          {
+            "name": "void marlin::Marlin<1125899906909960l, 1125899906843648l, 1125899906909960l, 1125899906909960l, 256, 1, 8, 8, true, 4, 2, false>(int4 const*, int4 const*, int4*, int4*, int4 const*, float const*, int4 const*, float const*, int4 const*, int const*, int, int, int, int, int, int*, bool, bool, bool, int)",
+            "summed_duration_ms": 4.698597999999999
+          },
+          {
+            "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<float>, std::array<char*, 3ul> >(int, at::native::CUDAFunctor_add<float>, std::array<char*, 3ul>)",
+            "summed_duration_ms": 4.359193000000001
+          },
+          {
+            "name": "void gemv2T_kernel_val<int, int, __nv_bfloat16, __nv_bfloat16, __nv_bfloat16, float, 128, 16, 4, 4, false, false, cublasGemvParamsEx<int, cublasGemvTensorStridedBatched<__nv_bfloat16 const>, cublasGemvTensorStridedBatched<__nv_bfloat16 const>, cublasGemvTensorStridedBatched<__nv_bfloat16>, float> >(cublasGemvParamsEx<int, cublasGemvTensorStridedBatched<__nv_bfloat16 const>, cublasGemvTensorStridedBatched<__nv_bfloat16 const>, cublasGemvTensorStridedBatched<__nv_bfloat16>, float>, float, float)",
+            "summed_duration_ms": 4.3155470000000005
+          },
+          {
+            "name": "chunk_gated_delta_rule_fwd_kernel_h_blockdim64",
+            "summed_duration_ms": 4.1822050000000015
+          },
+          {
+            "name": "void vllm::act_and_mul_kernel<c10::BFloat16, __nv_bfloat162, &(c10::BFloat16 vllm::silu_kernel<c10::BFloat16>(c10::BFloat16 const&, float)), &(__nv_bfloat162 vllm::packed_silu_kernel<__nv_bfloat162>(__nv_bfloat162 const&, float)), true, true, false, false>(c10::BFloat16*, c10::BFloat16 const*, int, float, float, float)",
+            "summed_duration_ms": 4.158749000000003
+          }
+        ],
+        "note": "Summed kernel durations are diagnostic, not wall time or a critical-path decomposition",
+        "source_bytes": 46428719,
+        "source_sha256": "959726a385c9c009c080b494b3372781789986c32f4d980d5336148a6dfd7d4f"
+      }
+    ],
+    "decode": [
+      {
+        "file": "rank0.1795821191245411948.pt.trace.json",
+        "gpu_kernel_count": 316177,
+        "event_count": 3324688,
+        "top_kernel_summed_durations_ms": [
+          {
+            "name": "void marlin::Marlin<1125899906909960l, 1125899906843648l, 1125899906909960l, 1125899906909960l, 256, 1, 8, 8, true, 4, 2, false>(int4 const*, int4 const*, int4*, int4*, int4 const*, float const*, int4 const*, float const*, int4 const*, int const*, int, int, int, int, int, int*, bool, bool, bool, int)",
+            "summed_duration_ms": 534.8878230000007
+          },
+          {
+            "name": "void marlin::Marlin<1125899906909960l, 1125899906843648l, 1125899906909960l, 1125899906909960l, 128, 1, 4, 8, true, 4, 2, false>(int4 const*, int4 const*, int4*, int4*, int4 const*, float const*, int4 const*, float const*, int4 const*, int const*, int, int, int, int, int, int*, bool, bool, bool, int)",
+            "summed_duration_ms": 380.4192090000057
+          },
+          {
+            "name": "ampere_bf16_s16816gemm_bf16_64x64_ldg8_f2f_stages_64x6_tn",
+            "summed_duration_ms": 185.43876799999998
+          },
+          {
+            "name": "void gemv2T_kernel_val<int, int, __nv_bfloat16, __nv_bfloat16, __nv_bfloat16, float, 128, 16, 4, 4, false, false, cublasGemvParamsEx<int, cublasGemvTensorStridedBatched<__nv_bfloat16 const>, cublasGemvTensorStridedBatched<__nv_bfloat16 const>, cublasGemvTensorStridedBatched<__nv_bfloat16>, float> >(cublasGemvParamsEx<int, cublasGemvTensorStridedBatched<__nv_bfloat16 const>, cublasGemvTensorStridedBatched<__nv_bfloat16 const>, cublasGemvTensorStridedBatched<__nv_bfloat16>, float>, float, float)",
+            "summed_duration_ms": 183.388176
+          },
+          {
+            "name": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, 4, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithCast<1>, at::native::memory::StoreWithCast<1> >(int, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithCast<1>, at::native::memory::StoreWithCast<1>)",
+            "summed_duration_ms": 156.90284199999155
+          },
+          {
+            "name": "fused_recurrent_gated_delta_rule_packed_decode_kernel",
+            "summed_duration_ms": 61.70088700000008
+          },
+          {
+            "name": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::MeanOps<float, float, float, float>, unsigned int, float, 4, 4> >(at::native::ReduceOp<float, at::native::MeanOps<float, float, float, float>, unsigned int, float, 4, 4>)",
+            "summed_duration_ms": 60.7530919999983
+          },
+          {
+            "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+            "summed_duration_ms": 47.864502000006645
+          }
+        ],
+        "note": "Summed kernel durations are diagnostic, not wall time or a critical-path decomposition",
+        "source_bytes": 1401822196,
+        "source_sha256": "96afc45e55d1fd7bf0fded44533d660d2acbbdcad9f602f482332c08088b5e00"
+      }
+    ]
+  },
+  "artifacts": {
+    "correctness-0.json": {
+      "bytes": 2103,
+      "sha256": "e7481b9850bbc1ced2d7c0b3320c7bb895810d8b0e6db5d5c8b6ead9a78e9d92"
+    },
+    "correctness-1.json": {
+      "bytes": 2093,
+      "sha256": "7f8994734e94f65d543f55affa9ad617c3823ee850dcc7ffe5d95095c2230232"
+    },
+    "decode/torch/profiler_out_0.txt": {
+      "bytes": 20652,
+      "sha256": "4d6174f5af7c396f117afd49c5eb406e8666ed85f88cfbcd8c5a24916e59571b"
+    },
+    "decode/torch/rank0.1795821191245411948.pt.trace.json": {
+      "bytes": 1401822196,
+      "sha256": "96afc45e55d1fd7bf0fded44533d660d2acbbdcad9f602f482332c08088b5e00"
+    },
+    "decode-metrics-after.txt": {
+      "bytes": 61259,
+      "sha256": "650e036ad302025421bd12b881f15ac16c29c561e723756282d006b8d55cb3b9"
+    },
+    "decode-metrics-before.txt": {
+      "bytes": 58486,
+      "sha256": "e53d6729bafe41be8faf742c11c8e0b10e362c86c80f74139b267b00d3df3bb8"
+    },
+    "decode-metrics-export-check.txt": {
+      "bytes": 60066,
+      "sha256": "b0a15baa2660a3fc5029c695e856ae6843cc7846e33991fda06a92e17e6b58a1"
+    },
+    "decode.log": {
+      "bytes": 64064,
+      "sha256": "a13a861ce06a919a341808799c540a7bb5f7b68d0668931e708b6b9579ea41ad"
+    },
+    "decode.yaml": {
+      "bytes": 970,
+      "sha256": "444ee37932f86ca21a4131ea90647b193c7fc07f3a9b55f13fdfe66dd3e363e9"
+    },
+    "dependency-check.log": {
+      "bytes": 38,
+      "sha256": "2adf89b2f9af790ed95de71de8fd23f47f0fd57e1fc1d1b27270e9d3e38a23e9"
+    },
+    "gpu-inventory.csv": {
+      "bytes": 254,
+      "sha256": "82c09566ef7b57fb5089bb0b4d65c55235cd3a27287309af89beab3df3821f08"
+    },
+    "gpu-processes-before.csv": {
+      "bytes": 50,
+      "sha256": "b27e08c50c3aa525f7b9029816a75159bad0a92027cca90654c7cf9d825a6ca0"
+    },
+    "original_chunk.py": {
+      "bytes": 8711,
+      "sha256": "c105ead259e86aedc248c53e7c4cef07034d0ff12da608d80265d1dd0990803f"
+    },
+    "prefill/torch/profiler_out_0.txt": {
+      "bytes": 20657,
+      "sha256": "444901317e3f1e0aff32025be2d3e55103b2b087e6494187e3e1afb77c7877b2"
+    },
+    "prefill/torch/rank0.1795821154115640107.pt.trace.json": {
+      "bytes": 46428719,
+      "sha256": "959726a385c9c009c080b494b3372781789986c32f4d980d5336148a6dfd7d4f"
+    },
+    "prefill-metrics-after.txt": {
+      "bytes": 61247,
+      "sha256": "675afd4b4e8bed20956d78c372e52568b030433d7bea95b70f7929a9f03bfac5"
+    },
+    "prefill-metrics-before.txt": {
+      "bytes": 58463,
+      "sha256": "0b24f5d1773d77ad9b9f6c827d04a4068104e833faad0a1ad0fa7a42602cfb3f"
+    },
+    "prefill.log": {
+      "bytes": 68024,
+      "sha256": "27c91594a91c41dc8893737a430df8ed378cf9f3b0acd519e1f4abbe2443bc22"
+    },
+    "prefill.yaml": {
+      "bytes": 971,
+      "sha256": "30a13f5dd0186c4eb8dd609e12cb9968c38cb5918eae3b218c80b21c188803a1"
+    },
+    "proxy.log": {
+      "bytes": 24145,
+      "sha256": "9f139b96ce89f947af2f534d40963c1f1a681c8a3bc57b09b83d9c570276dc0e"
+    },
+    "source/reference-proxy-provenance.json": {
+      "bytes": 513,
+      "sha256": "16ae9044d8c8d232a3eed55c0a1a62bdafcdc3f6d7b7694ca57489d4a96937aa"
+    },
+    "source/reference_proxy.py": {
+      "bytes": 9499,
+      "sha256": "a1f35807982469638d56af82182bbedfdeba67341069cb594958c0e2a5cba167"
+    },
+    "source/replicate.py": {
+      "bytes": 12286,
+      "sha256": "34a62c6b1e1739621c8d60731914e05df33c3c1ac9731482d0b3074c7f399b43"
+    },
+    "status.json": {
+      "bytes": 4007,
+      "sha256": "a3fb9b9d054446a235e5bbf20b9fab32043f44889ca9f9794a25ad3c78c6ede0"
+    },
+    "trace-integrity-check.json": {
+      "bytes": 7913,
+      "sha256": "ee18c8f70acfed8d62df37f5c7fa4b0bd067276700e0951818dae2ba99e3a7fc"
+    },
+    "versions.json": {
+      "bytes": 253,
+      "sha256": "accfca5ca8c714b76d18a49922da79796f94f05d11f46854865bd219e16bfe78"
+    },
+    "vision-baseline-r0.json": {
+      "bytes": 1123,
+      "sha256": "7aa9e559882a63738629fff5f5d17ae500f10fef47de78c7643cf2f725b74d6c"
+    },
+    "vision-baseline-r0.log": {
+      "bytes": 6386,
+      "sha256": "b43bdfe5b48164c00da0c3e1685fbd786f88355884d7edf95de3df773a9e7996"
+    },
+    "vision-baseline-r0.yaml": {
+      "bytes": 604,
+      "sha256": "83a404d36970498eeec397fff9fc1a73781be07e39dc68c5aa0b4f4f3d144b08"
+    },
+    "vision-baseline-r1.json": {
+      "bytes": 1123,
+      "sha256": "d722df88aa5be70c29d3b5a4db0677f24417c6a6d8641e1fb68a6d8e3ebc80ac"
+    },
+    "vision-baseline-r1.log": {
+      "bytes": 5847,
+      "sha256": "cc6a1c94fd51ae11a189791aa5815ab8fad0d3143d96efd267564f338e1e696f"
+    },
+    "vision-baseline-r1.yaml": {
+      "bytes": 604,
+      "sha256": "a1877361590cee2ebb32f08173f101ddc7287554c9fe7a56eb4632d7e06d1084"
+    },
+    "vision-pd-r0.json": {
+      "bytes": 1124,
+      "sha256": "ea6a21fcf7c0791de1379fb0b981d4b24348f62a2e2aa2f3ca2e33988dc7cc7a"
+    },
+    "vision-pd-r0.log": {
+      "bytes": 5894,
+      "sha256": "c8cd275a8a08bf92e5f383ff31167bb866aafadfd26aea661b00f25cdc4d1cb3"
+    },
+    "vision-pd-r0.yaml": {
+      "bytes": 598,
+      "sha256": "445400b6d0689c7af2aa2807afa0667100c5ac1cd04a982073323848dd74e57e"
+    },
+    "vision-pd-r1.json": {
+      "bytes": 1125,
+      "sha256": "f1b7a60faf7186cf6308aa2a3a0e20dfb35ca48897bd9bf462b038338193df22"
+    },
+    "vision-pd-r1.log": {
+      "bytes": 5841,
+      "sha256": "b5d56979e1288164f0e9fba72515f659abed073f4b0835cf8a670923e7e0bc12"
+    },
+    "vision-pd-r1.yaml": {
+      "bytes": 598,
+      "sha256": "24fe425665aa9065e8c56c6dff1c2100cb03f6f9a2f77e7d2fb658b2b785ac2c"
+    },
+    "vision-trace.json": {
+      "bytes": 1121,
+      "sha256": "bb382b1e06dd213c7982950838fc5d5ae67100814b614e2903c2ba057d33247f"
+    },
+    "vision-trace.log": {
+      "bytes": 4875,
+      "sha256": "635d6463acc6be855ac9433d7990ab5ee0335ba786fbc240746d1cdfdf0e6b45"
+    },
+    "vision-trace.yaml": {
+      "bytes": 597,
+      "sha256": "ac01e75aaaa170533026e885cccb5c04796426493dd0ab89e80fdb5d0259b164"
+    }
+  },
+  "limitations": [
+    "Adapted Qwen3.5-4B AWQ replication, not the inaccessible original Qwen3.8-27B AutoRound checkpoint",
+    "Ordinary baseline generates on one GPU; PD uses two GPUs, so this is not a hardware-budget-matched comparison",
+    "Two small ordered repeats; shared host and unlocked clocks; no statistical significance claim",
+    "Vision correctness not established by two text equality checks; measured request success is distinct from image-task accuracy",
+    "Profiler measurements excluded from unprofiled performance comparisons",
+    "Native JIT and multimodal processor caches may differ by run order; inspect logs",
+    "Dataset revision was not pinned by the supplied benchmark interface"
+  ]
+}

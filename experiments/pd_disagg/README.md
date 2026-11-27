@@ -3,9 +3,14 @@
 ## Purpose
 
 Preserve and analyze the prefill/decode disaggregation setup supplied in
-`reqwen3_6int4trace.zip`. **This is a configuration-only, incomplete experiment
-bundle.** It describes disaggregated prefill but contains no measured results,
+`reqwen3_6int4trace.zip`. **The original archive is a configuration-only, incomplete
+experiment bundle.** It describes disaggregated prefill but contains no measured results,
 server logs, or profiler traces. The six supplied files are imported unchanged.
+
+An **adapted Qwen3.5-4B AWQ replication has now completed** on `serrano`, including
+real KV transfers, image benchmarks, and both profiler traces. Its independently
+recorded results are in [replication-summary.json](replication-summary.json);
+they do not establish reproduction of the inaccessible original 27B checkpoint.
 
 The configured topology is a benchmark client on port 8300, a proxy, a prefill
 producer on one GPU, and a decode consumer on another GPU. KV transfer is
@@ -45,6 +50,54 @@ The supplied comments themselves flag multimodal PD and hybrid-SSM/Mamba MTP
 compatibility as unverified; no runtime evidence resolves those questions.
 
 ## Replication instructions
+
+For the verified **adapted** run, use [replicate.py](replicate.py) and the
+[reference proxy](reference_proxy.py), whose source commit, hashes, adaptations,
+and [Apache license](REFERENCE_PROXY_LICENSE) are retained. The original six
+files remain unchanged. The controller selects the original chunked GDN module,
+uses native multimodal warmup instead of the absent overlay, validates two text
+responses, and runs ordinary/PD image workloads before separate profiling.
+
+1. On a CUDA 13 host with the existing `.venv`, install the missing runtime and
+   benchmark packages into this experiment's artifact directory. This leaves
+   `.venv` and the fork untouched. Existing Torch, NumPy, and other dependencies
+   must remain compatible; the controller checks imports before taking GPUs.
+
+   ```bash
+   cd /home/lukezeng/inference
+   EXPERIMENT_DIR="$PWD/experiments/pd_disagg"
+   uv pip install --python .venv/bin/python \
+     --target "$EXPERIMENT_DIR/artifacts/runtime_deps" --no-deps \
+     nixl==1.5.0 nixl-cu13==1.5.0 datasets==5.2.0 pandas==3.1.1 \
+     pyarrow==26.0.1 multiprocess==0.70.19 xxhash==4.1.0 \
+     python-dateutil==4.0.0 six==1.17.0
+   ```
+
+2. Select two idle GPUs and start a fresh run. The default model is the cached
+   `axteam/Qwen3.5-4B-AWQ-4bit` at revision
+   `ba968c07f40fa0bce733c2264d860d2fa671cfcf`. Startup includes image/kernel
+   warmup. Memory utilization is 0.70, one image and no video are allowed per
+   prompt, eager execution is explicit, and MTP/prefix caching are off.
+
+   ```bash
+   EXPERIMENT_RUN_DIR="$EXPERIMENT_DIR/artifacts/replications/adapted-$(date -u +%Y%m%dT%H%M%SZ)"
+   .venv/bin/python -u "$EXPERIMENT_DIR/replicate.py" --gpus 0 1 \
+     --output-dir "$EXPERIMENT_RUN_DIR" --num-prompts 20 --repeats 2 --profile
+   ```
+
+3. After the controller finishes and releases its process groups, curate results.
+   Torch's decode trace finalization can take several minutes. The curator
+   validates successful transfer counters, benchmark counts, text checks, and
+   GPU events in both trace files. Raw data is retained under `artifacts/`.
+
+   ```bash
+   .venv/bin/python "$EXPERIMENT_DIR/curate_replication.py" \
+     --run-dir "$EXPERIMENT_RUN_DIR" --output "$EXPERIMENT_RUN_DIR/summary.json"
+   ```
+
+The following numbered recipe documents the **original archived setup**. It
+still requires the missing original proxy/overlay and readable checkpoint;
+it is not the adapted run above.
 
 1. Inspect the supplied files and metadata from the repository root. These checks
    do not start a server or allocate model memory.
@@ -133,7 +186,44 @@ compatibility as unverified; no runtime evidence resolves those questions.
 
 ## Results
 
-**Static classification: configured disaggregated prefill, not runtime-verified.**
+**Adapted replication completed November 27, 2026 (Pacific time).** Run directory:
+`artifacts/replications/serrano-4b-20261127T230431Z/`. GPUs 0/1 on `serrano`,
+Qwen3.5-4B AWQ, NIXL 1.5.0, UCX, original chunked GDN, native vision warmup,
+and explicit eager execution. Full versions, effective YAMLs, command arrays,
+source snapshots, and hashes are retained. An earlier dependency-failed attempt
+at `serrano-4b-20261127T225810Z` is preserved separately.
+
+- **47 successful KV transfers, zero failed transfers**, and 47 proxy handoff
+  records with nonempty remote block/engine metadata. NIXL's compatibility
+  handshake passed. This is runtime evidence of disaggregation.
+- Both direct-serving versus PD text responses matched exactly in two checks.
+- All **80 unprofiled image requests** completed (20 requests × two repeats ×
+  ordinary/PD), with zero failures. Both paths reported 16,990 input and 2,397
+  output tokens per 20-request run; 128 was a cap, not an achieved fixed length.
+- A separate two-request profiled image benchmark also completed. Valid trace
+  JSONs contain **5,238 prefill GPU kernels** and **316,177 decode GPU kernels**.
+  The prefill trace is about 46 MB; the decode trace about 1.4 GB. The profiling
+  branch also includes one configured warmup request while profiling is active.
+
+| Repeat | Ordinary output tok/s | PD output tok/s | Ordinary mean TTFT (ms) | PD mean TTFT (ms) |
+|---|---:|---:|---:|---:|
+| 0 | 44.64 | 42.23 | 455.6 | 774.2 |
+| 1 | 45.24 | 42.04 | 324.6 | 845.5 |
+
+**The ordinary baseline uses one GPU; PD uses two.** This is an operational
+comparison, not a hardware-budget-matched capacity study or a statistical speedup
+claim. Here PD had lower throughput and higher mean TTFT in both small repeats.
+JIT, processor caches, ordering, and unlocked shared hardware also limit timing
+interpretation. NIXL timing aggregates include profiled requests and should not
+be treated as uninstrumented transfer latency estimates. Image-task accuracy
+has not been established by the two text equality checks.
+
+The [curated replication summary](replication-summary.json) records each run,
+transfer counters, trace diagnostics, and raw-artifact hashes. Its measurements
+are kept separate from the original archive classification below.
+
+**Original archive classification: configured disaggregated prefill, with no
+runtime evidence supplied in the archive.**
 The classification follows the distinct `kv_producer` and `kv_consumer` roles,
 different server/GPU assignments, shared NIXL/UCX transfer configuration, and the
 benchmark targeting a proxy rather than either worker directly.
@@ -148,6 +238,12 @@ missing dependencies, and hashes; its status is not a successful benchmark run.
 
 - Tracked: all six supplied files, imported byte-for-byte; this README; and
   [summary.json](summary.json), including individual SHA256 hashes.
+- Adapted-run tools and data: [replicate.py](replicate.py),
+  [reference proxy provenance](reference-proxy-provenance.json),
+  [curator](curate_replication.py), and [replication-summary.json](replication-summary.json).
+- Verified raw data: `artifacts/replications/serrano-4b-20261127T230431Z/`, including
+  four unprofiled benchmark JSONs, a separate profiled result, two complete traces,
+  NIXL metrics before/after, correctness responses, logs, versions, and configs.
 - Original ZIP SHA256:
   `c0e2372cd9ce2f38b4a8284d1200827927017a7eb7faca8d465a237cdc3dd8f9`.
 - Ignored original archive copy: `artifacts/original/reqwen3_6int4trace.zip`.
@@ -163,7 +259,9 @@ image handling, streaming, and actual phase assignment. The missing import overl
 prevents identification of all effective code changes. Neither dependency is
 reconstructed by this import. Model weights, original environment, and runtime
 outputs are absent, so correctness, compatibility, successful disaggregation,
-and performance are unverified.
+and performance of the original setup are unverified. The adapted 4B run does
+not restore those original inputs or validate MTP; its narrower results are
+described separately above.
 
 The benchmark requests only 20 prompts at concurrency 2, without repeated trials
 or an ordinary-serving baseline. That is a smoke-test specification, not strong
