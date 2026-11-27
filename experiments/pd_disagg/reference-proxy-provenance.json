@@ -1,0 +1,12 @@
+{
+  "source": "vllm/tests/v1/kv_connector/nixl_integration/toy_proxy_server.py",
+  "vllm_fork_commit": "db0084219d62a7b7b564adeedb9e6536cadcf0d8",
+  "source_sha256": "1210e5525cc0c57f891734b682d3f8939aa7456a672bea16b44f03b6707136ff",
+  "adaptations": [
+    "Reject absent KV metadata rather than permitting unverified local-prefill fallback",
+    "Emit request-level KV handoff evidence without logging prompt content"
+  ],
+  "adapted_sha256": "a1f35807982469638d56af82182bbedfdeba67341069cb594958c0e2a5cba167",
+  "source_matches_recorded_commit": true,
+  "source_checkout_status": ""
+}
