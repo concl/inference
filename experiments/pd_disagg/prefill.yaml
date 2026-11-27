@@ -1,0 +1,37 @@
+# PD disaggregation — PREFILL side (producer).
+# Qwen3.8-27B INT4, one GPU, text-only. NixlConnector.
+model: /home/kaleox.dev/models-cache/qwen3.8-27b-int4-autoround
+served-model-name: qwen3.8-27b
+
+quantization: auto_round
+tensor-parallel-size: 1
+pipeline-parallel-size: 1
+dtype: bfloat16
+gpu-memory-utilization: 0.92
+max-model-len: 8192
+max-num-seqs: 2
+max-num-batched-tokens: 2048
+
+# Vision ON for VisionArena. NOTE: multimodal PD is unverified in the NIXL matrix.
+
+host: 127.0.0.1
+port: 8100
+reasoning-parser: qwen3
+tool-call-parser: qwen3_xml
+enable-auto-tool-choice: true
+trust-remote-code: true
+
+no-enable-prefix-caching: true
+disable-custom-all-reduce: true
+
+# Safe first default; remove once PD is proven if you want CUDA graphs.
+
+default-chat-template-kwargs:
+  enable_thinking: false
+
+kv-transfer-config:
+  kv_connector: NixlConnector
+  kv_role: kv_producer
+  kv_load_failure_policy: fail
+  kv_connector_extra_config:
+    backends: ["UCX"]

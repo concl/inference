@@ -1,0 +1,155 @@
+{
+  "experiment": "pd_disagg",
+  "status": "configuration_only_incomplete_bundle",
+  "source_archive": {
+    "name": "reqwen3_6int4trace.zip",
+    "sha256": "c0e2372cd9ce2f38b4a8284d1200827927017a7eb7faca8d465a237cdc3dd8f9",
+    "members": 6,
+    "uncompressed_bytes": 11490
+  },
+  "source_files": {
+    "bench-vision-arena.yaml": {
+      "sha256": "7b3f2b95808eba33dd97f73d1ec0b75007fdbb03b809c802481a0b52887845ae",
+      "bytes": 552
+    },
+    "decode-mtp.yaml": {
+      "sha256": "663dbf9f2f276cda983ac9dc723ae991adb4810471faef9155841a08fb69c938",
+      "bytes": 995
+    },
+    "decode.yaml": {
+      "sha256": "41483541070fad49c95f397446c72fd14d3d080d9e7f771f41c289867507355f",
+      "bytes": 880
+    },
+    "prefill-mtp.yaml": {
+      "sha256": "c3dd215515ecc56bbdcf9b8ea42f6945ebfd0102941e21cba9cabc7b150963e0",
+      "bytes": 996
+    },
+    "prefill.yaml": {
+      "sha256": "b6530a736928ddfc83c0040fd2c9bf2727ff8b863b2a1901051566ad03ab65ee",
+      "bytes": 951
+    },
+    "run.sh": {
+      "sha256": "f5fd8c5c15ac1c35f854369c99a169d1d17babd745f51baafaa2533bffa88a65",
+      "bytes": 7116
+    }
+  },
+  "classification": {
+    "configured_disaggregated_prefill": true,
+    "runtime_verified": false,
+    "reason": "Separate kv_producer and kv_consumer instances on different GPUs, NixlConnector/UCX KV transfer, and a proxy-facing benchmark. Both instances have TP=1 and PP=1.",
+    "successful_kv_transfer_observed": false,
+    "proxy_forwarding_implementation_available": false
+  },
+  "model": {
+    "configured_path": "/home/kaleox.dev/models-cache/qwen3.8-27b-int4-autoround",
+    "served_model_name": "qwen3.8-27b",
+    "quantization": "auto_round",
+    "checkpoint_included": false,
+    "revision": null,
+    "weight_bit_width_verified": false,
+    "archive_label_mismatch": "Archive name suggests Qwen3.6; all supplied model paths and served names identify Qwen3.8-27B."
+  },
+  "topology": {
+    "prefill": {
+      "config": "prefill.yaml",
+      "gpu_default": "0",
+      "port": 8100,
+      "tensor_parallel_size": 1,
+      "pipeline_parallel_size": 1,
+      "kv_role": "kv_producer"
+    },
+    "decode": {
+      "config": "decode.yaml",
+      "gpu_default": "1",
+      "port": 8200,
+      "tensor_parallel_size": 1,
+      "pipeline_parallel_size": 1,
+      "kv_role": "kv_consumer"
+    },
+    "proxy": {
+      "port": 8300,
+      "source": "proxy.py",
+      "source_included": false
+    },
+    "connector": "NixlConnector",
+    "transport": [
+      "UCX"
+    ],
+    "kv_load_failure_policy": "fail"
+  },
+  "shared_server_settings": {
+    "dtype": "bfloat16",
+    "gpu-memory-utilization": 0.92,
+    "max-model-len": 8192,
+    "max-num-seqs": 2,
+    "max-num-batched-tokens": 2048,
+    "no-enable-prefix-caching": true
+  },
+  "mtp": {
+    "default_enabled": false,
+    "enable_environment": "PD_MTP=1",
+    "method": "mtp",
+    "num_speculative_tokens": 3,
+    "prefill_config": "prefill-mtp.yaml",
+    "decode_config": "decode-mtp.yaml",
+    "runtime_verified": false
+  },
+  "workload": {
+    "benchmark_config": "bench-vision-arena.yaml",
+    "backend": "openai-chat",
+    "base-url": "http://127.0.0.1:8300",
+    "endpoint": "/v1/chat/completions",
+    "model": "qwen3.8-27b",
+    "tokenizer": "/home/kaleox.dev/models-cache/qwen3.8-27b-int4-autoround",
+    "dataset-name": "hf",
+    "dataset-path": "lmarena-ai/vision-arena-bench-v0.1",
+    "hf-name": "lmarena-ai/vision-arena-bench-v0.1",
+    "hf-split": "train",
+    "hf-output-len": 128,
+    "num-prompts": 20,
+    "num-warmups": 1,
+    "max-concurrency": 2,
+    "seed": 0,
+    "no-stream": true,
+    "percentile-metrics": "ttft,tpot,itl",
+    "metric-percentiles": "50,95",
+    "save-result": true,
+    "result-dir": "experiments/pd_disagg/artifacts",
+    "result-filename": "bench-vision-arena.json",
+    "dataset_revision": null,
+    "dataset_hash": null
+  },
+  "profiling": {
+    "default_enabled": false,
+    "enable_environment": "PROFILE=1 PROFILE_ONLY=1",
+    "profiler": "torch",
+    "separate_prefill_and_decode_traces": true,
+    "requested_unprofiled_warmup_prompts": 1,
+    "requested_profiled_prompts": 2,
+    "record_shapes": true,
+    "with_stack": false,
+    "with_memory": false,
+    "use_gzip": false,
+    "explicit_buffer_sizes": null,
+    "traces_supplied": false
+  },
+  "missing_project_dependencies": [
+    "proxy.py",
+    "no_mm_warmup/"
+  ],
+  "measured_results": {
+    "benchmark_results_supplied": false,
+    "profiler_traces_supplied": false,
+    "performance_metrics": null
+  },
+  "limitations": [
+    "No server logs, benchmark outputs, traces, exact software versions, or model/dataset revisions in the archive",
+    "Cannot verify proxy routing, actual KV transfer, correctness, hardware model, or runtime feature compatibility",
+    "Archive comments mark multimodal PD and hybrid SSM/Mamba MTP combinations as unverified",
+    "Hard-coded checkpoint path must be reconciled on the execution host",
+    "run.sh continues after several warmup/profiling/benchmark failures; its final done message is not a success check",
+    "Only 20 configured benchmark prompts at concurrency 2; no comparative baseline or statistical repeats supplied",
+    "no-stream controls dataset loading in the local benchmark parser; it does not itself disable HTTP response streaming",
+    "CUDA Graph behavior is not explicitly configured despite an ambiguous comment"
+  ]
+}
