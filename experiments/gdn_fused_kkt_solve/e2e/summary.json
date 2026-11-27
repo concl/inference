@@ -1,0 +1,233 @@
+{
+  "status": "complete",
+  "model_id": "axteam/Qwen3.5-4B-AWQ-4bit",
+  "model_revision": "ba968c07f40fa0bce733c2264d860d2fa671cfcf",
+  "gpu_uuid": "GPU-d6327ec5-dcea-859e-51cf-875c92cbc0a8",
+  "environment": {
+    "model_id": "axteam/Qwen3.5-4B-AWQ-4bit",
+    "model_revision": "ba968c07f40fa0bce733c2264d860d2fa671cfcf",
+    "gpu_uuid": "GPU-d6327ec5-dcea-859e-51cf-875c92cbc0a8",
+    "host": "ynez",
+    "python": "3.12.3",
+    "git_head": "6052b1864cb6fbb0882c13f2f31f2b7cba869f39",
+    "versions": {
+      "vllm": "0.29.0",
+      "torch": "2.13.0",
+      "triton": "3.7.1",
+      "transformers": "5.17.0",
+      "compressed-tensors": "0.17.0",
+      "numpy": "2.3.5",
+      "aiohttp": "3.14.3"
+    },
+    "source_sha256": {
+      "candidate_full.py": "102bf3f911d64d575f10177dc87e1c61fd1cbaaf6d161bfee4e32aa6396d8103",
+      "analyze.py": "d8e89d7c56024126196e46ceecbf7b09017d8adcd40878d4f0c97a4e7514a704",
+      "check_outputs.py": "4df70f0e048a5795a4240fa575d0f6cf2fd00fccd7a61953d52a8dcfe32a1631",
+      "provenance.json": "946863b89b983e7ede69be77f05324b6fcd2f2c260d1dd93593e25eaa35e507b",
+      "serve.yaml": "dc11a8e7c8118c5cdb3c9950d90fa46dda7adb7242a28adff36c59eec9dc3638",
+      "sitecustomize.py": "634401531d7ce7fac0fc257206f60588d665a87d59fb59ed53c19d6b058c50f1",
+      "gdn_e2e_worker.py": "884de6c10d593524fcfbeac1b1a54efaf2ab3b42d9f4b9cae6df537020b2b5c7",
+      "run.py": "b6ce9aaf9e4682350d01df1381cf98177c49f67a3769689b5dd1b3dfdfd835ff",
+      "chunk_overlay.py": "ccc109acf5b308967e87c434f8858815935d5f35b9f1ee39dcb0714e1507f081",
+      "candidate.py": "a67d696718e519cdfd794dd8b1f16d65141c778fb20081402653f4460e10ee43",
+      "summarize.py": "f8d8bdae2f6d5b9132eef95559b2c4ded5c2dcb219e36fa2b82c3d91af4d11d1"
+    },
+    "statistics_plan": {
+      "confirmation_pairs": 24,
+      "requests_per_arm": 4,
+      "prompt_tokens_approx": 8192,
+      "output_tokens": 32,
+      "concurrency": 1,
+      "endpoints": [
+        "HTTP completion latency",
+        "HTTP TTFT"
+      ],
+      "multiplicity": "Holm correction across two endpoints",
+      "unit": "paired block, not individual request",
+      "pilot_excluded": true
+    },
+    "metadata_finalized_utc": "2026-11-25T03:31:15Z"
+  },
+  "started_utc": "2026-11-25T03:25:53Z",
+  "ended_utc": "2026-11-25T03:30:16Z",
+  "confirmation": {
+    "phase": "confirmation",
+    "source_sha256": "22be5825515946271c355066129f8d59baa9d2e9388b5473bfc248a086847cc8",
+    "inference": {
+      "temperature": 0,
+      "ignore_eos": true,
+      "prefix_caching": false
+    },
+    "analysis_plan": "Fixed 24 confirmation pairs; two-sided paired sign-flip permutation tests and paired-block bootstrap 95% CIs on geometric mean latency ratios. Pilot excluded. Completion latency primary, TTFT secondary; Holm correction over these two predeclared endpoints.",
+    "workloads": [
+      {
+        "workload": [
+          8192,
+          32
+        ],
+        "pairs": 24,
+        "requests_per_arm": 4,
+        "matching_outputs": 84,
+        "metrics": {
+          "mean_e2e_ms": {
+            "baseline_mean_ms": 1276.705230342183,
+            "fused_mean_ms": 1273.0185617704894,
+            "geometric_mean_speedup": 1.002900777749858,
+            "speedup_ci95": [
+              1.0016590342954728,
+              1.0041045188005198
+            ],
+            "permutation_p_two_sided": 0.00027999720002799973,
+            "paired_log_ratios": [
+              0.003169031068125052,
+              0.0021232384391254135,
+              0.0064609174564712124,
+              0.0022383163381663198,
+              0.0011057051760029624,
+              0.009877164649652579,
+              0.007075599898886315,
+              0.004161129567920227,
+              -0.0008288562687176194,
+              0.0025749784873288365,
+              0.00299093164463118,
+              0.0012893680432496868,
+              0.003286008816584289,
+              0.0028099635306638496,
+              0.006048131103662866,
+              0.005179182764770542,
+              0.002993719762853323,
+              -0.001844472899893519,
+              0.00468461970585137,
+              0.001368182151661082,
+              0.0039876711370471375,
+              -0.0054948077503933455,
+              0.0009406874969594697,
+              0.003321476382513774
+            ],
+            "endpoint": "primary",
+            "confirmatory": true,
+            "holm_adjusted_p": 0.00027999720002799973,
+            "significant_at_05": true
+          },
+          "mean_ttft_ms": {
+            "baseline_mean_ms": 1043.8474512905789,
+            "fused_mean_ms": 1040.4556735199246,
+            "geometric_mean_speedup": 1.0032635979493172,
+            "speedup_ci95": [
+              1.0021698778833577,
+              1.0044560991044813
+            ],
+            "permutation_p_two_sided": 1.999980000199998e-05,
+            "paired_log_ratios": [
+              0.0031052022248313047,
+              0.002707082032692568,
+              0.0038428823416278134,
+              0.002440608561322211,
+              0.0019482194214055241,
+              0.012166564151516736,
+              0.008050415069772754,
+              0.004347758262181746,
+              0.0033732626277444126,
+              0.004637684157755081,
+              0.0036130495657803138,
+              0.0015135306620230604,
+              0.003600013305003727,
+              0.0014007055270265029,
+              0.005465331955797561,
+              0.002608076813203017,
+              -0.001096840233857071,
+              -0.0003969210611695945,
+              0.0043847920849902225,
+              0.0017532845034939283,
+              0.0036397709931504357,
+              0.0021445548917919405,
+              -0.0023936763264570237,
+              0.00534346380071099
+            ],
+            "endpoint": "secondary",
+            "confirmatory": true,
+            "holm_adjusted_p": 3.999960000399996e-05,
+            "significant_at_05": true
+          }
+        }
+      }
+    ]
+  },
+  "requests": 192,
+  "failed_requests": 0,
+  "matching_greedy_outputs": 84,
+  "comparisons": 96,
+  "input_token_range": [
+    8175,
+    8176
+  ],
+  "validation": {
+    "layer_cases": 48,
+    "max_abs_limit": 0.02,
+    "relative_l2_limit": 0.01,
+    "maximum_output_error": 0.0078125,
+    "maximum_state_error": 0.012215040624141693,
+    "maximum_relative_l2": 0.003551109228283167
+  },
+  "dispatch_calls": {
+    "baseline": 2304,
+    "fused": 2304
+  },
+  "output_repeatability": {
+    "cases": 6,
+    "baseline_repeatable": 6,
+    "fused_repeatable": 6,
+    "variants_match": 2,
+    "note": "Post-hoc output repeatability control, excluded from performance statistics"
+  },
+  "artifacts": {
+    "environment.json": {
+      "path": "artifacts/e2e-20261125T031821Z/environment.json",
+      "sha256": "7d2f3c596dbeb3bf7c5a4c553b3743d7cf84dd77e50c42950536c2344b240217"
+    },
+    "server.log": {
+      "path": "artifacts/e2e-20261125T031821Z/server.log",
+      "sha256": "11cfa99261ece99101b7901a2e018ec0e5a33da61a0551f1ae2121811dfee2db"
+    },
+    "pilot/results.json": {
+      "path": "artifacts/e2e-20261125T031821Z/pilot/results.json",
+      "sha256": "d69de6726655a5b03153e40f0a2f00e0f47bb0107acd99acaec3e97a13309673"
+    },
+    "pilot/prompts.json": {
+      "path": "artifacts/e2e-20261125T031821Z/pilot/prompts.json",
+      "sha256": "6ab50e41be7cba1e061d999722978c3933090264b704ddff15bc5890be50833e"
+    },
+    "confirmation/results.json": {
+      "path": "artifacts/e2e-20261125T031821Z/confirmation/results.json",
+      "sha256": "22be5825515946271c355066129f8d59baa9d2e9388b5473bfc248a086847cc8"
+    },
+    "confirmation/prompts.json": {
+      "path": "artifacts/e2e-20261125T031821Z/confirmation/prompts.json",
+      "sha256": "45021be5c0890b1fb8a594c0c245e066a60842813d6a00deaf1a5ac3e536a58b"
+    },
+    "output-control.json": {
+      "path": "artifacts/e2e-20261125T031821Z/output-control.json",
+      "sha256": "6325f9ebb312203e1ab9a1c79b750185458a9682a4b044ce9ac1cfddefbb59a2"
+    }
+  },
+  "limitations": [
+    "One AWQ checkpoint, one GPU and host, one server session, concurrency 1",
+    "Constructed long-input prompts from ShareGPT; exactly 32 output tokens forced",
+    "PyTorch compilation disabled; decode-only full CUDA Graphs enabled",
+    "Shared host and other GPUs active; no clock locking",
+    "Activation parity passed; exact greedy output agreement and task accuracy are separate questions",
+    "Pilot excluded; marginal bootstrap intervals and Holm-adjusted endpoint p-values reported"
+  ],
+  "supplementary_exact_permutation_check": {
+    "mean_e2e_ms": {
+      "exact_two_sided_p": 0.0001666545867919922,
+      "planned_monte_carlo_p": 0.00027999720002799973,
+      "permutations": 16777216
+    },
+    "mean_ttft_ms": {
+      "exact_two_sided_p": 7.152557373046875e-06,
+      "planned_monte_carlo_p": 1.999980000199998e-05,
+      "permutations": 16777216
+    }
+  }
+}

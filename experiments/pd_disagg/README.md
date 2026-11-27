@@ -151,7 +151,8 @@ missing dependencies, and hashes; its status is not a successful benchmark run.
 - Original ZIP SHA256:
   `c0e2372cd9ce2f38b4a8284d1200827927017a7eb7faca8d465a237cdc3dd8f9`.
 - Ignored original archive copy: `artifacts/original/reqwen3_6int4trace.zip`.
-- The upload at the repository root is retained; it is not added to Git.
+- The upload at the repository root is retained and tracked alongside the
+  imported files; the additional original-copy artifact remains ignored.
 - Future results: fresh `artifacts/replications/<UTC timestamp>/` and
   `artifacts/captures/<UTC timestamp>/` directories.
 

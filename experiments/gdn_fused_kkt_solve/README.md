@@ -105,6 +105,14 @@ available for the legacy 27B shapes. It waits for 60 continuous idle seconds.
 
 ## Results
 
+The [quantized-model end-to-end follow-up](e2e/README.md) completed on one RTX 3090:
+24 randomized paired blocks (192 requests) found a statistically detectable
+**0.289% full-response time reduction** (95% interval 0.166–0.409%, Holm-adjusted
+p≈0.00028). This is about 3.7 ms on a 1.28-second request, substantially smaller
+than the operator-level ratios below. Exact greedy output agreement was 84/96;
+task accuracy preservation is not established. See the follow-up for protocol,
+quality controls, compilation settings, limitations, and [curated data](e2e/summary.json).
+
 Completed on November 17, 2026 (Pacific time; artifact timestamps are UTC), on
 physical RTX 3090 GPUs 0 and 1. Run:
 `artifacts/runs/qwen35-4b-20261118T045102Z/`. Both GPUs passed smoke and full

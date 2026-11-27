@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 
-def analyze(path):
+def read_prefill(path):
     with gzip.open(path, "rt") as stream:
         events = json.load(stream)["traceEvents"]
     spans = [
@@ -31,6 +31,12 @@ def analyze(path):
         if event.get("cat") in {"kernel", "gpu_memcpy", "gpu_memset"}
         and event.get("args", {}).get("External id") in external_ids
     ]
+    return events, prefill, activity
+
+
+def analyze(path):
+    events, prefill, activity = read_prefill(path)
+    start, end = prefill["ts"], prefill["ts"] + prefill["dur"]
     intervals = sorted((e["ts"], e["ts"] + e["dur"]) for e in activity)
     gaps = []
     busy_end = intervals[0][1]

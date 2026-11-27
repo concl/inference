@@ -1,0 +1,21 @@
+model: axteam/Qwen3.5-4B-AWQ-4bit
+revision: ba968c07f40fa0bce733c2264d860d2fa671cfcf
+served-model-name: qwen35-4b-awq
+tensor-parallel-size: 1
+dtype: bfloat16
+language-model-only: true
+gpu-memory-utilization: 0.75
+max-model-len: 12288
+max-num-seqs: 4
+max-num-batched-tokens: 8192
+no-enable-prefix-caching: true
+host: 127.0.0.1
+port: 8157
+worker-extension-cls: gdn_e2e_worker.GDNExperimentWorker
+additional-config:
+  gdn_prefill_backend: triton
+compilation-config:
+  mode: 0
+  cudagraph_mode: FULL_DECODE_ONLY
+default-chat-template-kwargs:
+  enable_thinking: false
